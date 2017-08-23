@@ -1,0 +1,30 @@
+<template>
+  <div class="editor-text">
+    <div v-if="!edit">
+      {{content}}
+    </div>
+    <div v-if="edit">
+      <textarea v-model="content" cols="30" rows="10"></textarea>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  name: 'text-editor',
+  props: ['token'],
+  shortcodeTitle: 'Text',
+  shortcodeDescription: 'This component will render HTML',
+  shortcodeTemplate: '<h1>Title</h1>',
+  data() {
+    return {
+      edit: false,
+      content: '',
+    }
+  },
+  created() {
+    this.$watch('token.body', function () {
+      this.content = this.token.body
+    }, {immediate: true})
+  }
+}
+</script>
