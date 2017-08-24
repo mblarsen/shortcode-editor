@@ -1,5 +1,5 @@
 <template>
-  <div class="editor-add">
+  <div class="add-button">
     <button @click="showCatalog" class="editor-add btn btn-success">
       <i class="fa fa-plus"></i>
     </button>
@@ -17,12 +17,3 @@ export default {
   },
 }
 </script>
-<style>
-.editor-add {
-  width: 100%;
-  flex: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-</style>

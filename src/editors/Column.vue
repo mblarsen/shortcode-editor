@@ -1,7 +1,7 @@
 <template>
-  <div class="editor-column">
-    <div class="editor-row__label">column</div>
-    <div class="editor-column__children">
+  <div class="editor editor-column">
+    <div class="editor__label">column</div>
+    <div class="editor__children editor__children--column">
       <component v-for="(editor, i) in editors"
         class="editor"
         :is="editor.use"
@@ -13,8 +13,6 @@
 </template>
 <script>
 import AddButton from '@/AddButton'
-import TextEditor from '@/editors/Text'
-import RowEditor from '@/editors/Row'
 import createEditors from '@/EditorFactory'
 
 export default {
@@ -26,8 +24,10 @@ export default {
   shortcodeTemplate: '[column class="col-sm-3"][/column]',
   components: {
     AddButton,
-    RowEditor,
-    TextEditor,
+  },
+  beforeCreate: function () {
+    this.$options.components.RowEditor = require('@/editors/Row')
+    this.$options.components.TextEditor = require('@/editors/Text')
   },
   data() {
     return {
@@ -47,24 +47,3 @@ export default {
   },
 }
 </script>
-<style>
-.editor-column {
-  background-color: #f9f9f9;
-  border: 1px solid #e9e9e9;
-  border-radius: 3px;
-  padding: 1rem;
-}
-.editor-column__label {
-  color: lightgray;
-  font-size: 90%;
-  margin-top: -10px;
-  margin-left: -3px;
-}
-.editor-column__children {
-  display: flex;
-  flex-direction: column
-}
-.editor-column__children > * {
-  flex: 1
-}
-</style>

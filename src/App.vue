@@ -1,12 +1,12 @@
 <template>
   <div class="slot-editor">
     <div class="row">
-      <div class="col-xs-6 col-xs-offset-3">
+      <div class="col-xs-8 col-xs-offset-2">
         <textarea v-model="content"></textarea>
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-6 col-xs-offset-3">
+      <div class="col-xs-8 col-xs-offset-2">
         <component v-for="(editor, i) in editors"
           class="editor"
           :is="editor.use"
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-6 col-xs-offset-3">
+      <div class="col-xs-8 col-xs-offset-2">
         <add-button context="all" :caller="callerId"/>
       </div>
     </div>
@@ -24,7 +24,6 @@
 </template>
 
 <script>
-require('@/css/app.css')
 import Vue from 'vue'
 import CodeSlot from '@/CodeSlot'
 import createEditors from '@/EditorFactory'

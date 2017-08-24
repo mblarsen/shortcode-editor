@@ -1,5 +1,6 @@
 <template>
-  <div class="editor-text">
+  <div class="editor editor-text">
+    <div class="editor__label">text</div>
     <div v-if="!edit">
       {{content}}
     </div>

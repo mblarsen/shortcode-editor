@@ -1,0 +1,32 @@
+
+.editor {
+  background-color: var(--gray-bg-color);
+  border: 1px solid var(--gray-border-color);
+  border-radius: var(--box-border-radius);
+  padding: 1rem;
+}
+.editor__label {
+  color: var(--gray-color);
+  font-size: 90%;
+  margin-top: -10px;
+  margin-left: -3px;
+}
+.editor__children {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.editor__children > * {
+  flex: 1;
+}
+
+.editor__children--column {
+  flex-direction: column;
+}
+
+.editor__children--row > * {
+  margin-right: 0.5rem;
+}
+.editor__children--row > *:last-child {
+  margin-left: 0;
+}
