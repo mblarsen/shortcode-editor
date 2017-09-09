@@ -4088,9 +4088,9 @@ shelljs@^0.7.5, shelljs@^0.7.6:
     interpret "^1.0.0"
     rechoir "^0.6.2"
 
-shortcode-tokenizer@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/shortcode-tokenizer/-/shortcode-tokenizer-0.1.1.tgz#72c83a594b91bb5e391d0da0be6f67ff144b683c"
+shortcode-tokenizer@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/shortcode-tokenizer/-/shortcode-tokenizer-0.4.0.tgz#862036d28ff2012c57ae38745d172b3327edaa9e"
 
 sigmund@^1.0.1:
   version "1.0.1"
