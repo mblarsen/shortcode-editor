@@ -5,6 +5,9 @@
   border-radius: var(--box-border-radius);
   padding: 1rem;
 }
+.editor:hover {
+  border-color: var(--highlight-border-color);
+}
 .editor__label {
   color: var(--gray-color);
   font-size: 90%;
