@@ -16,6 +16,7 @@ export default {
   shortcodeTitle: 'Text',
   shortcodeDescription: 'This component will render HTML',
   shortcodeTemplate: '<h1>Title</h1>',
+  shortcodeContext: ['root', 'container'],
   data() {
     return {
       edit: false,
@@ -26,6 +27,11 @@ export default {
     this.$watch('token.body', function () {
       this.content = this.token.body
     }, {immediate: true})
+  },
+  methods: {
+    toTemplate() {
+      return this.content
+    }
   }
 }
 </script>
