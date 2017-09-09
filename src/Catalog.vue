@@ -28,10 +28,12 @@
 import ColumnEditor from '@/editors/Column'
 import RowEditor from '@/editors/Row'
 import TextEditor from '@/editors/Text'
+import ProductListEditor from '@/editors/ProductList'
 
 let items = [
   ColumnEditor,
   RowEditor,
+  ProductListEditor,
   TextEditor,
 ].map(item => ({
   name: item.name,
