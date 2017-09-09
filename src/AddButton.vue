@@ -2,6 +2,7 @@
   <div class="add-button">
     <button @click="showCatalog" class="editor-add btn btn-success">
       <i class="fa fa-plus"></i>
+      <span v-if="text">{{text}}</span>
     </button>
   </div>
 </template>
@@ -9,10 +10,19 @@
 export default {
   name: 'add-button',
   inject: ['bus'],
-  props: {caller: String, context: String},
+  props: {
+    caller: String,
+    context: String,
+    text: String,
+    component: String,
+  },
   methods: {
     showCatalog() {
-      this.bus.$emit('showCatalog', {caller: this.caller, context: this.context})
+      this.bus.$emit('showCatalog', {
+        caller: this.caller,
+        context: this.context,
+        component: this.component,
+      })
     },
   },
 }
