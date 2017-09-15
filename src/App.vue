@@ -1,12 +1,7 @@
 <template>
-  <div class="slot-editor">
+  <div class="slot-editor-instance">
     <div class="row">
-      <div class="col-xs-8 col-xs-offset-2">
-        <textarea v-model="content" style="width: 100%"></textarea>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-8 col-xs-offset-2">
+      <div class="col">
         <component v-for="(editor, i) in editors"
           class="editor"
           :is="editor.use"
@@ -15,14 +10,11 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-8 col-xs-offset-2">
+      <div class="col">
         <add-button context="root" :caller="callerId"/>
       </div>
     </div>
     <catalog/>
-      <hr />
-    <save-button @save="save"></save-button>
-    <div v-for="item in log">{{item}} <button class="btn btn-sm" @click="content = item">use</button></div>
   </div>
 </template>
 
@@ -39,8 +31,10 @@ import SaveButton from '@/SaveButton'
 
 export default {
   name: 'slot-editor',
-  provide: {
-    bus: new Vue()
+  provide() {
+    return {
+      bus: new Vue()
+    }
   },
   components: {
     AddButton,
@@ -54,7 +48,7 @@ export default {
   data() {
     return {
       content: '',
-      log: [],
+      srcElement: null,
     }
   },
   computed: {
@@ -75,6 +69,11 @@ export default {
     /* on update save */
     this._provided.bus.$on('update', this.save)
   },
+  mounted() {
+    const srcId = this.$parent.$options.el.attributes.src.value
+    this.srcElement = document.getElementById(srcId)
+    this.content = this.srcElement.value
+  },
   methods: {
     save() {
       const template = this.$children
@@ -82,14 +81,12 @@ export default {
         .map(c => c.toTemplate())
         .join('')
       this.content = template
-      this.log.unshift(template)
+      this.srcElement.value = template
     }
   }
 }
 </script>
 <style>
-.slot-editor {
-}
 .editor {
   margin-bottom: 0.5rem;
 }

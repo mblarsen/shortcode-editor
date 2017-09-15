@@ -4,8 +4,7 @@ import App from './App'
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  render: h => h(App)
-})
+Array.from(document.getElementsByClassName('slot-editor'))
+  .map(el => {
+    return new Vue({el, render: h => h(App)})
+  })

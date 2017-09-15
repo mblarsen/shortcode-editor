@@ -24,19 +24,20 @@
           <div class="form-group">
             <label class="col-sm-2 control-label">Products</label>
             <div class="col-sm-5">
-              <input class="form-control input-sm" type="input" min="1" max="20" step="1" v-model="num">
+              <input class="form-control input-sm" type="number" min="1" max="20" step="1" v-model="num">
               <span class="help-block">The number of products to be displayed in the list.</span>
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">List</label>
             <div class="col-sm-5">
-              <select class="form-control" v-model="name">
+              <select class="form-control" v-model="name" :disabled="loading">
                 <option value="" disabled>Select list</option>
                 <option value="random">Random</option>
                 <option value="bestsellers">Bestsellers</option>
                 <option v-for="list in lists" :value="list.name">{{list.title}}</option>
               </select>
+              <span v-if="loading" class="help-block">Loading...</span>
             </div>
           </div>
           <div class="form-group">
@@ -63,7 +64,7 @@
         </div>
       </template>
       <template slot="footer">
-        <button @click="save" class="btn btn-success">Save</button>
+        <button @click="save" class="btn btn-success" :disabled="loading">Save</button>
       </template>
     </edit-modal>
   </div>
@@ -96,9 +97,8 @@ export default {
         ? this.token.params.nav
         : true,
       klass: this.token.params.class || '',
-      lists: [
-        {name: 'summer2018', title: 'Summer of 2018'},
-      ],
+      lists: [],
+      loading: false,
     }
   },
   computed: {
@@ -106,7 +106,23 @@ export default {
       return `${this.$options.name}-${this._uid}`
     },
   },
+  watch: {
+    isEditing(editing) {
+      if (editing) {
+        this.fetchLists()
+      }
+    }
+  },
   methods: {
+    fetchLists() {
+      this.loading = true
+      setTimeout(() => {
+        this.lists = [
+          {name: 'summer2018', title: 'Summer of 2018'},
+        ]
+        this.loading = false
+      }, 1500)
+    },
     edit() {
       this.isEditing = true
     },
