@@ -1,6 +1,6 @@
 <template>
   <div class="add-button">
-    <button @click="showCatalog" class="editor-add btn btn-success">
+    <button @click="showCatalog" class="editor-add btn btn-xs btn-success">
       <i class="fa fa-plus"></i>
       <span v-if="text">{{text}}</span>
     </button>

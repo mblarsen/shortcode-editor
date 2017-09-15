@@ -5,20 +5,65 @@
     <edit-modal :open="isEditing">
       <template slot="title">Product list</template>
       <template slot="body">
-        <input type="text" v-model="klass">
-        <input type="text" v-model="title" placeholder="Optional list title"> <button @click="title = ''">Clear</button>
-        <select v-model="name">
-          <option value="" disabled>Select list</option>
-          <option value="random">Random</option>
-          <option value="bestsellers">Bestsellers</option>
-          <option v-for="list in lists" :value="list.name">{{list.title}}</option>
-        </select>
-        <input type="input" min="1" max="20" step="1" v-model="num">
-        <label><input type="checkbox" v-model="fullwidth"> is full width</label>
-        <label><input type="checkbox" v-model="nav"> has navigation</label>
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Title</label>
+            <div class="col-sm-10">
+              <div class="input-group">
+                <input class="form-control" type="text" v-model="title" placeholder="Optional list title">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" @click="title = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Products</label>
+            <div class="col-sm-5">
+              <input class="form-control input-sm" type="input" min="1" max="20" step="1" v-model="num">
+              <span class="help-block">The number of products to be displayed in the list.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">List</label>
+            <div class="col-sm-5">
+              <select class="form-control" v-model="name">
+                <option value="" disabled>Select list</option>
+                <option value="random">Random</option>
+                <option value="bestsellers">Bestsellers</option>
+                <option v-for="list in lists" :value="list.name">{{list.title}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox-inline">
+                <label><input type="checkbox" v-model="fullwidth"> fullwidth</label>
+              </div>
+              <div class="checkbox-inline">
+                <label><input type="checkbox" v-model="nav"> with navigation</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="classes" class="col-sm-2 control-label">Classes</label>
+            <div class="col-sm-10">
+              <div class="input-group">
+                <input class="form-control" type="text" v-model="klass" placeholder="CSS classes">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" @click="klass = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </template>
       <template slot="footer">
-        <button @click="save">Save</button>
+        <button @click="save" class="btn btn-success">Save</button>
       </template>
     </edit-modal>
   </div>

@@ -10,14 +10,16 @@
             <div>
               <input v-model="search" class="form-control" placeholder="Search..." type="text">
             </div>
-            <div v-for="item in filteredItems" class="editor-catalog__item">
-              <div>{{item.title}}</div>
-              <div>{{item.description}}</div>
-              <button @click="select(item.template)" class="btn btn-sm">select</button>
+            <div class="editor-catalog__items">
+              <div v-for="item in filteredItems" class="editor-catalog__item">
+                <div class="editor-catalog__item__title">{{item.title}}</div>
+                <div class="editor-catalog__item__description">{{item.description}}</div>
+                <button @click="select(item.template)" class="editor-catalog__item__select btn btn-xs btn-block btn-success">select</button>
+              </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button @click="open = false" class="btn btn-default">Close</button>
+            <button @click="open = false" class="btn btn-sm btn-default">Close</button>
           </div>
         </div>
       </div>
@@ -95,16 +97,4 @@ export default {
 }
 </script>
 <style>
-.modal.is-active {
-  display: block;
-  opacity: 1;
-}
-.modal.is-active .modal-dialog {
-  transform: translate(0, 0);
-}
-.editor-catalog {
-}
-.editor-catalog__item {
-  flex: 1;
-}
 </style>
