@@ -70,22 +70,20 @@
   </div>
 </template>
 <script>
-import EditModal from '@/EditModal'
+import BaseEditor from '@/editors/Base'
 
 export default {
   name: 'product-list-editor',
-  inject: ['bus'],
+  extends: BaseEditor,
   props: ['token'],
-  shortcodeTitle: 'Product list',
-  shortcodeDescription: 'Display a list of products',
-  shortcodeTemplate: '[product-list name="random" num=4/]',
-  shortcodeContext: ['root', 'container'],
-  components: {
-    EditModal,
-  },
+
+  editorTitle: 'Product list',
+  editorDescription: 'Display a list of products',
+  editorTemplate: '[product-list name="random" num=4/]',
+  editorContext: ['root', 'container'],
+
   data() {
     return {
-      isEditing: false,
       title: this.token.params.title,
       name: this.token.params.name || '',
       num: this.token.params.num || 8,
@@ -96,15 +94,9 @@ export default {
       nav: this.token.params.nav === undefined
         ? this.token.params.nav
         : true,
-      klass: this.token.params.class || '',
       lists: [],
       loading: false,
     }
-  },
-  computed: {
-    callerId() {
-      return `${this.$options.name}-${this._uid}`
-    },
   },
   watch: {
     isEditing(editing) {
@@ -123,29 +115,18 @@ export default {
         this.loading = false
       }, 1500)
     },
-    edit() {
-      this.isEditing = true
-    },
-    save() {
-      this.isEditing = false
-      this.bus.$emit('update')
-    },
-    toTemplate() {
+    properties() {
       const props = [
         `name="${this.name}"`,
         `num=${this.num}`,
         `fullwidth=${this.fullwidth ? 'true' : 'false'}`,
         `nav=${this.nav ? 'true' : 'false'}`,
       ]
-      if (this.title) {
-        props.push(`title="${this.title}"`)
-      }
-      if (this.klass) {
-        props.push(`class="${this.klass}"`)
-      }
 
-      return `[product-list ${props.join(' ')}/]`
-    }
+      this.title && props.push(`title="${this.title}"`)
+
+      return props
+    },
   }
 }
 </script>

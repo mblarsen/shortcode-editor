@@ -30,71 +30,21 @@
   </div>
 </template>
 <script>
-import AddButton from '@/AddButton'
-import EditModal from '@/EditModal'
-import ColumnEditor from '@/editors/Column'
-import createEditors from '@/EditorFactory'
+import BaseContainerEditor from '@/editors/BaseContainer'
 
 export default {
   name: 'row-editor',
-  inject: ['bus'],
-  props: ['token'],
-  shortcodeTitle: 'Row',
-  shortcodeDescription: 'This component will break content into rows.',
-  shortcodeTemplate: '[row][column][/column][/row]',
-  shortcodeContext: ['root', 'container'],
-  components: {
-    AddButton,
-    ColumnEditor,
-    EditModal,
-  },
+  extends: BaseContainerEditor,
+
+  editorTitle: 'Row',
+  editorDescription: 'This component will break content into rows.',
+  editorTemplate: '[row][column][/column][/row]',
+  editorContext: ['root', 'container'],
+
   data() {
     return {
-      isEditing: false,
-      klass: this.token.params.class || '',
       content: null,
     }
   },
-  computed: {
-    callerId() {
-      return `${this.$options.name}-${this._uid}`
-    },
-    editors() {
-      return createEditors(this.token.children)
-    }
-  },
-  created() {
-    this.bus.$on(this.callerId, ({item}) => (this.append(item)))
-  },
-  methods: {
-    append(content) {
-      const template = this.$children
-        .filter(c => c.$options.name.endsWith('-editor'))
-        .map(c => c.toTemplate())
-        .join('') + content
-      this.content = `[row${this.klass.trim().length ? ` class="${this.klass}"` : ''}]${template}[/row]`
-      this.bus.$emit('update')
-    },
-    edit() {
-      this.isEditing = true
-    },
-    save() {
-      this.isEditing = false
-      this.bus.$emit('update')
-    },
-    toTemplate() {
-      /* return pre-compiled content */
-      if (this.content) {
-        const content = this.content
-        this.content = null
-        return content
-      }
-      const template = this.$children
-        .filter(c => c.$options.name.endsWith('-editor'))
-        .map(c => c.toTemplate())
-        .join('')
-      return `[row${this.klass.trim().length ? ` class="${this.klass}"` : ''}]${template}[/row]`
-    }
-  }
 }
 </script>

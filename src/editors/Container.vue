@@ -1,6 +1,6 @@
 <template>
-  <div class="editor editor-column">
-    <div class="editor__label"><a @click="edit">column <span v-if="klass">[{{klass}}]</span></a></div>
+  <div class="editor editor-container">
+    <div class="editor__label"><a @click="edit">container <span v-if="klass">[{{klass}}]</span></a></div>
     <div class="editor__children editor__children--column">
       <component v-for="(editor, i) in editors"
         class="editor"
@@ -11,7 +11,7 @@
     <add-button context="container" :caller="callerId"/>
     <edit-modal :open="isEditing">
       <template slot="title">
-        Column
+        Container
       </template>
       <template slot="body">
         <form class="form-horizontal">
@@ -19,6 +19,13 @@
             <label for="classes" class="col-sm-2 control-label">Classes</label>
             <div class="col-sm-10">
               <input id="classes" class="form-control" type="text" v-model="klass" placeholder="CSS classes">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox-inline">
+                <label><input type="checkbox" v-model="fullwidth"> fullwidth</label>
+              </div>
             </div>
           </div>
         </form>
@@ -33,18 +40,25 @@
 import BaseContainerEditor from '@/editors/BaseContainer'
 
 export default {
-  name: 'column-editor',
+  name: 'container-editor',
   extends: BaseContainerEditor,
 
-  editorTitle: 'Column',
-  editorDescription: 'This component can order content in a column. Use boostrap classes to define size.',
-  editorTemplate: '[column][/column]',
-  editorContext: ['row'],
+  editorTitle: 'Container',
+  editorDescription: 'This component provides proper padding to content. Can be normal width or full width.',
+  editorTemplate: '[container][/container]',
+  editorContext: ['root', 'container'],
 
   data() {
     return {
-      content: null,
+      fullwidth: this.token.params.fullwidth === undefined
+        ? this.token.params.fullwidth
+        : true,
     }
   },
+  methods: {
+    properties() {
+      return [`fullwidth=${this.fullwidth ? 'true' : 'false'}`]
+    },
+  }
 }
 </script>

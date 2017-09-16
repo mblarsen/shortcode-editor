@@ -13,10 +13,10 @@
 export default {
   name: 'text-editor',
   props: ['token'],
-  shortcodeTitle: 'Text',
-  shortcodeDescription: 'This component will render HTML',
-  shortcodeTemplate: '<h1>Title</h1>',
-  shortcodeContext: ['root', 'container'],
+  editorTitle: 'Text',
+  editorDescription: 'This component will render HTML',
+  editorTemplate: '<h1>Title</h1>',
+  editorContext: ['root', 'container'],
   data() {
     return {
       edit: false,

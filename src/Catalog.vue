@@ -27,22 +27,24 @@
   </div>
 </template>
 <script>
+import ContainerEditor from '@/editors/Container'
 import ColumnEditor from '@/editors/Column'
 import RowEditor from '@/editors/Row'
 import TextEditor from '@/editors/Text'
 import ProductListEditor from '@/editors/ProductList'
 
 let items = [
+  ContainerEditor,
   ColumnEditor,
   RowEditor,
   ProductListEditor,
   TextEditor,
 ].map(item => ({
   name: item.name,
-  title: item.shortcodeTitle,
-  description: item.shortcodeDescription,
-  template: item.shortcodeTemplate,
-  context: item.shortcodeContext,
+  title: item.editorTitle,
+  description: item.editorDescription,
+  template: item.editorTemplate,
+  context: item.editorContext,
 }))
 
 export default {
@@ -96,5 +98,3 @@ export default {
   },
 }
 </script>
-<style>
-</style>

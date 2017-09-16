@@ -10,7 +10,25 @@ class Editor {
   }
 }
 
-export default function create(content) {
+/* computed property: callerId */
+export function callerId() {
+  return `${this.$options.name}-${this._uid}`
+}
+
+/* computed property: editors  */
+export function editors() {
+  return createEditors(this.token.children)
+}
+
+export function injectEditors(vue) {
+  vue.$options.components.ProductListEditor = require('@/editors/ProductList')
+  vue.$options.components.ContainerEditor = require('@/editors/Container')
+  vue.$options.components.RowEditor = require('@/editors/Row')
+  vue.$options.components.ColumnEditor = require('@/editors/Column')
+  vue.$options.components.TextEditor = require('@/editors/Text')
+}
+
+export function createEditors(content) {
   let tokens = content
   if (typeof content === 'string') {
     const tokenizer = new Tokenizer(null, {
