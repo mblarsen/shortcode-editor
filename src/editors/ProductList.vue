@@ -1,7 +1,13 @@
 <template>
   <div class="editor editor-column">
     <div class="editor__label"><a @click="edit">product list: {{name}}</a></div>
-    <div>{{num}} product(s) from {{name}}</div>
+    <div class="product-list__title">{{num}} product(s) from {{name}} <template v-if="title">with title {{title}}</template></div>
+    <div class="product-list__products">
+      <!-- <div v-for="i in num" class="product-list__product" :style="{width: productWidth}"> -->
+      <div v-for="i in products" class="product-list__product" :style="{width: productWidth}">
+        <span class="icon"><i class="fa fa-product-hunt"></i></span>
+      </div>
+    </div>
     <edit-modal :open="isEditing">
       <template slot="title">Product list</template>
       <template slot="body">
@@ -84,6 +90,7 @@ export default {
 
   data() {
     return {
+      numInList: 4, // TODO read from shop config
       title: this.token.params.title,
       name: this.token.params.name || '',
       num: this.token.params.num || 8,
@@ -97,6 +104,14 @@ export default {
       lists: [],
       loading: false,
     }
+  },
+  computed: {
+    productWidth() {
+      return `calc(100%/${this.numInList})`
+    },
+    products() {
+      return Array.from(Array(this.num || 1)).map((_, i) => i)
+    },
   },
   watch: {
     isEditing(editing) {
@@ -130,3 +145,22 @@ export default {
   }
 }
 </script>
+<style>
+.product-list__products {
+  display: flex;
+  justify-items: space-between;
+  height: 10vh;
+  margin-left: -5px;
+  margin-bottom: 1rem;
+}
+.product-list__product {
+  display: flex;
+  height: 100%;
+  margin-left: 5px;
+  justify-content: center;
+  align-items: center;
+  color: var(--content-dimmed-color);
+  background-color: var(--content-color);
+  border-radius: var(--box-border-radius);
+}
+</style>

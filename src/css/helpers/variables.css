@@ -4,5 +4,7 @@
   --gray-bg-color: #f9f9f9;
   --gray-border-color: #e9e9e9;
   --highlight-border-color: #9999f9;
-  --box-border-radius: 3px;
+  --box-border-radius: 4px;
+  --content-color: #caeeff;
+  --content-dimmed-color: #a4d0e5;
 }
