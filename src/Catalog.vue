@@ -27,34 +27,17 @@
   </div>
 </template>
 <script>
-import ContainerEditor from '@/editors/Container'
-import ColumnEditor from '@/editors/Column'
-import RowEditor from '@/editors/Row'
-import TextEditor from '@/editors/Text'
-import ProductListEditor from '@/editors/ProductList'
-
-let items = [
-  ContainerEditor,
-  ColumnEditor,
-  RowEditor,
-  ProductListEditor,
-  TextEditor,
-].map(item => ({
-  name: item.name,
-  title: item.editorTitle,
-  description: item.editorDescription,
-  template: item.editorTemplate,
-  context: item.editorContext,
-}))
+import {injectEditors} from '@/EditorFactory'
 
 export default {
   name: 'catalog',
   inject: ['bus'],
+  beforeCreate() { injectEditors(this) },
   data() {
     return {
       open: false,
       context: 'root',
-      items: items,
+      items: [],
       search: '',
     }
   },
@@ -70,6 +53,9 @@ export default {
     }
   },
   created() {
+    /* build that catalog of components */
+    this.fillCatalog()
+
     /**
      * @param {Object} obj An object with caller and context
      * @param {String} obj.caller An id of the caller so we know who to sent catalog choice to
@@ -94,6 +80,17 @@ export default {
     select(item) {
       this.open = false
       this.bus.$emit(this.caller, {item})
+    },
+    fillCatalog() {
+      this.items = Object.values(this.$options.components)
+        .filter(item => item.editorTitle)
+        .map(item => ({
+          name: item.name,
+          title: item.editorTitle,
+          description: item.editorDescription,
+          template: item.editorTemplate,
+          context: item.editorContext,
+        }))
     },
   },
 }
