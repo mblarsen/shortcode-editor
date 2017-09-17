@@ -3,7 +3,6 @@
     <div class="editor__label"><a @click="edit">product list: {{name}}</a></div>
     <div class="product-list__title">{{num}} product(s) from {{name}} <template v-if="title">with title {{title}}</template></div>
     <div class="product-list__products">
-      <!-- <div v-for="i in num" class="product-list__product" :style="{width: productWidth}"> -->
       <div v-for="i in products" class="product-list__product" :style="{width: productWidth}">
         <span class="icon"><i class="fa fa-product-hunt"></i></span>
       </div>
@@ -110,7 +109,7 @@ export default {
       return `calc(100%/${this.numInList})`
     },
     products() {
-      return Array.from(Array(this.num || 1)).map((_, i) => i)
+      return parseInt(this.num)
     },
   },
   watch: {
