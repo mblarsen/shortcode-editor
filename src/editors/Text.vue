@@ -5,10 +5,11 @@
       <a class="editor__remove btn btn-xs btn-link`" @click.prevent="remove"><span class="icon"><i class="fa fa-times"></i></span></a>
     </div>
     <div v-if="!isEditing">
-      {{content}}
+      <div v-html="content" @click="edit" class="text-editor__content"></div>
     </div>
     <div v-if="isEditing">
-      <textarea v-model="content" cols="30" rows="10"></textarea>
+      <textarea v-model="content" class="form-control text-editor__content--editing" cols="30" rows="10"></textarea>
+      <button @click="save" class="btn btn-xs btn-success">Save</button>
     </div>
   </div>
 </template>
@@ -40,3 +41,14 @@ export default {
   }
 }
 </script>
+<style>
+.text-editor__content {
+  width: 100%;
+}
+.text-editor__content--editing {
+  margin-bottom: 0.5rem;
+}
+.text-editor__content * {
+  font-size: 90%;
+}
+</style>
