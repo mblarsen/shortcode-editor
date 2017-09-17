@@ -15,10 +15,21 @@
         <add-button context="root" :caller="callerId" class="add-button--root"/>
       </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <button v-if="undoLog.length > 0" @click="undo" class="btn btn-xs btn-default">
+          <span class="icon"><i class="fa fa-arrow-left"></i></span>
+          <span>undo</span>
+        </button>
+        <button v-if="redoLog.length > 0" @click="redo" class="btn btn-xs btn-default">
+          <span>redo</span>
+          <span class="icon"><i class="fa fa-arrow-right"></i></span>
+        </button>
+      </div>
+    </div>
     <catalog/>
   </div>
 </template>
-
 <script>
 import Vue from 'vue'
 import AddButton from '@/AddButton'
@@ -37,6 +48,8 @@ export default {
     return {
       content: '',
       srcElement: null,
+      undoLog: [],
+      redoLog: [],
     }
   },
   computed: {
@@ -56,8 +69,10 @@ export default {
     addListeners() {
       /* prepend root items */
       this._provided.bus.$on(this.callerId, (payload) => {
+        const old = this.content
+        this.redoLog = []
         this.content += payload.item
-        this.$nextTick(this.save)
+        this.$nextTick(() => this.save(old))
       })
       /* on update save */
       this._provided.bus.$on('update', this.save)
@@ -81,14 +96,24 @@ export default {
         .map(c => c.toTemplate())
         .join('')
     },
-    save() {
+    save(old = null) {
+      this.undoLog.push(old || this.content)
       const content = this.childrenToString()
       this.srcElement.innerText = this.content = content
     },
     removeChild() {
+      this.undoLog.push(this.content)
       const content = this.childrenToString(arguments[0])
       this.srcElement.innerText = this.content = content
-    }
+    },
+    undo() {
+      this.redoLog.push(this.content)
+      this.srcElement.innerText = this.content = this.undoLog.pop()
+    },
+    redo() {
+      this.undoLog.push(this.content)
+      this.srcElement.innerText = this.content = this.redoLog.pop()
+    },
   }
 }
 </script>
