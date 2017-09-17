@@ -11,7 +11,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <add-button context="root" :caller="callerId"/>
+        <add-button context="root" :caller="callerId" class="add-button--root"/>
       </div>
     </div>
     <catalog/>
