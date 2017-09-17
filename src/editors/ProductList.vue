@@ -96,11 +96,11 @@ export default {
       title: this.token.params.title,
       name: this.token.params.name || '',
       num: this.token.params.num || 8,
-      fullwidth: this.token.params.fullwidth === undefined
+      fullwidth: this.token.params.fullwidth !== undefined
         ? this.token.params.fullwidth
         : true,
       play: this.token.params.play || 2500,
-      nav: this.token.params.nav === undefined
+      nav: this.token.params.nav !== undefined
         ? this.token.params.nav
         : true,
       lists: [],

@@ -54,7 +54,7 @@ export default {
 
   data() {
     return {
-      fullwidth: this.token.params.fullwidth === undefined
+      fullwidth: this.token.params.fullwidth !== undefined
         ? this.token.params.fullwidth
         : true,
     }
