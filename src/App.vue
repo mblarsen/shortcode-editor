@@ -70,7 +70,6 @@ export default {
       /* prepend root items */
       this._provided.bus.$on(this.callerId, (payload) => {
         const old = this.content
-        this.redoLog = []
         this.content += payload.item
         this.$nextTick(() => this.save(old))
       })
@@ -100,11 +99,13 @@ export default {
       this.undoLog.push(old || this.content)
       const content = this.childrenToString()
       this.srcElement.innerText = this.content = content
+      this.redoLog = []
     },
     removeChild() {
       this.undoLog.push(this.content)
       const content = this.childrenToString(arguments[0])
       this.srcElement.innerText = this.content = content
+      this.redoLog = []
     },
     undo() {
       this.redoLog.push(this.content)
