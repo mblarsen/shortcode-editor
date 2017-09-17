@@ -64,8 +64,15 @@ export default {
     },
     readSource() {
       const srcId = this.$parent.$options.el.attributes.src.value
+      if (!srcId) {
+        throw new Error('src missing')
+      }
       this.srcElement = document.getElementById(srcId)
+      if (!this.srcElement) {
+        throw new Error(`src element not found: ${srcId}`)
+      }
       this.content = this.srcElement.value || ''
+      console.log(`editor mounted: ${srcId}`)
     },
     save() {
       const content = this.childrenToString()
