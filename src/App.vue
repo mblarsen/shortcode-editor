@@ -74,10 +74,6 @@ export default {
       this.content = this.srcElement.value || ''
       console.log(`editor mounted: ${srcId}`)
     },
-    save() {
-      const content = this.childrenToString()
-      this.srcElement.value = this.content = content
-    },
     childrenToString(except = null) {
       return this.$children
         .filter(c => c !== except)
@@ -85,9 +81,13 @@ export default {
         .map(c => c.toTemplate())
         .join('')
     },
+    save() {
+      const content = this.childrenToString()
+      this.srcElement.innerText = this.content = content
+    },
     removeChild() {
       const content = this.childrenToString(arguments[0])
-      this.srcElement.value = this.content = content
+      this.srcElement.innerText = this.content = content
     }
   }
 }
