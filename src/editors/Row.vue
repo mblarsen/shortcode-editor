@@ -1,9 +1,13 @@
 <template>
   <div class="editor editor-row">
-    <div class="editor__label"><a @click="edit">row <span v-if="klass">[{{klass}}]</span></a></div>
+    <div class="editor__header">
+      <div class="editor__label"><a @click="edit">row <span v-if="klass">[{{klass}}]</span></a></div>
+      <a class="editor__remove btn btn-xs btn-link`" @click.prevent="remove"><span class="icon"><i class="fa fa-times"></i></span></a>
+    </div>
     <div class="editor__children editor__children--row">
       <component v-for="(editor, i) in editors"
         class="editor"
+        @remove="removeChild"
         :is="editor.use"
         :token="editor.token"
         :key="editor.use + i"></component>

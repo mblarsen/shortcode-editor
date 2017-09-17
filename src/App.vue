@@ -4,6 +4,7 @@
       <div class="col">
         <component v-for="(editor, i) in editors"
           class="editor"
+          @remove="removeChild"
           :is="editor.use"
           :token="editor.token"
           :key="editor.use + i"></component>
@@ -70,12 +71,17 @@ export default {
       const content = this.childrenToString()
       this.srcElement.value = this.content = content
     },
-    childrenToString() {
+    childrenToString(except = null) {
       return this.$children
+        .filter(c => c !== except)
         .filter(c => c.$options.name.endsWith('-editor'))
         .map(c => c.toTemplate())
         .join('')
     },
+    removeChild() {
+      const content = this.childrenToString(arguments[0])
+      this.srcElement.value = this.content = content
+    }
   }
 }
 </script>

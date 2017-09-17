@@ -27,8 +27,9 @@ export default {
       this.content = this.toString(template)
       this.bus.$emit('update')
     },
-    childrenToString() {
+    childrenToString(except = null) {
       return this.$children
+        .filter(c => c !== except)
         .filter(c => c.$options.name.endsWith('-editor'))
         .map(c => c.toTemplate())
         .join('')
@@ -41,6 +42,11 @@ export default {
         return content
       }
       return this.toString(this.childrenToString())
+    },
+    removeChild() {
+      const template = this.childrenToString(arguments[0])
+      this.content = this.toString(template)
+      this.bus.$emit('update')
     }
   }
 }

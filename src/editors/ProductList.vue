@@ -1,6 +1,9 @@
 <template>
   <div class="editor editor-column">
-    <div class="editor__label"><a @click="edit">product list: {{name}}</a></div>
+    <div class="editor__header">
+      <div class="editor__label"><a @click="edit">product list</a></div>
+      <a class="editor__remove btn btn-xs btn-link`" @click.prevent="remove"><span class="icon"><i class="fa fa-times"></i></span></a>
+    </div>
     <div class="product-list__title">{{num}} product(s) from {{name}} <template v-if="title">with title {{title}}</template></div>
     <div class="product-list__products">
       <div v-for="i in products" class="product-list__product" :style="{width: productWidth}">

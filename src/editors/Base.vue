@@ -51,6 +51,9 @@ export default {
       this.isEditing = false
       this.bus.$emit('update')
     },
+    remove() {
+      this.$emit('remove', this)
+    },
   }
 }
 </script>

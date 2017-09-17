@@ -7,11 +7,19 @@
 .editor:hover {
   border-color: var(--highlight-border-color);
 }
+.editor__header {
+  display: flex;
+  justify-content: space-between;
+}
 .editor__label {
   color: var(--gray-color);
   font-size: 90%;
   margin-top: -10px;
   margin-left: -3px;
+}
+.editor__remove {
+  margin-top: -12px;
+  margin-right: -10px;
 }
 .editor__children {
   display: flex;
