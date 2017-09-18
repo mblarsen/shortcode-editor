@@ -11,6 +11,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "sentinel-js": "^0.0.1",
     "shortcode-tokenizer": "^0.4.0",
     "vue": "^2.3.3"
   },

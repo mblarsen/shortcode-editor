@@ -4049,6 +4049,10 @@ send@0.15.4:
     range-parser "~1.2.0"
     statuses "~1.3.1"
 
+sentinel-js@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/sentinel-js/-/sentinel-js-0.0.1.tgz#6aba17bff965873508a0129b48d34e013b2fb297"
+
 serve-static@1.12.4:
   version "1.12.4"
   resolved "https://registry.yarnpkg.com/serve-static/-/serve-static-1.12.4.tgz#9b6aa98eeb7253c4eedc4c1f6fdbca609901a961"
