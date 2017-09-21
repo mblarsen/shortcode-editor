@@ -130,19 +130,18 @@ export default {
     },
     fetchImage() {
       if (!this.src) {
-        this.loading = true
         this.fetchLists()
           .then(() => {
             const list = this.findList(this.list)
             this.images = list.images
             const image = list && list.images.find(i => i.name === this.name) || null
             this.src_ = image && image.url || null
-            this.loading = false
           })
       }
     },
     fetchLists() {
       return new Promise((resolve, reject) => {
+        this.loading = true
         if (this.lists.lists) { return resolve() }
         setTimeout(() => {
           this.lists = lists = [
@@ -168,6 +167,7 @@ export default {
               ]
             }
           ]
+          this.loading = false
           resolve(this.lists)
         }, 800)
       })
