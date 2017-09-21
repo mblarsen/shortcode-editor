@@ -4,7 +4,7 @@
       <div class="editor__label"><a @click.prevent="edit">image <span v-if="klass">[{{klass}}]</span></a></div>
       <a class="editor__remove btn btn-xs btn-link`" @click.prevent="remove"><span class="icon"><i class="fa fa-times"></i></span></a>
     </div>
-    <img v-if="src_" :src="src_" :alt="alt" class="image__preview"/>
+    <img v-if="src_" :src="src_" :alt="alt" class="image__preview" @click="edit"/>
     <edit-modal :open="isEditing">
       <template slot="title">
         Image
@@ -36,7 +36,7 @@
             </div>
             <div class="col-sm-offset-2 col-sm-10">
               <div class="image__list-images">
-                <img v-for="image in images" :src="image.url" @click="selectImage(image)" class="image__list-image" :class="{'image__list-image--selected': image.name === name}" alt="">
+                <img v-for="image in images" :src="image.url" :key="image.url" @click="selectImage(image)" class="image__list-image" :class="{'image__list-image--selected': image.name === name}" alt="">
               </div>
             </div>
           </div>
@@ -96,6 +96,8 @@ export default {
   watch: {
     list() {
       this.images = this.findList(this.list).images
+      this.name = null
+      this.src_ = null
     },
   },
   methods: {
