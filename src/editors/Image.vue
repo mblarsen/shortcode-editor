@@ -197,7 +197,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 0.5rem;
-  max-height: 50vh;
+  max-height: 35vh;
   overflow-y: auto;
 }
 .image__list-image {
