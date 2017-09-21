@@ -12,10 +12,10 @@
       <template slot="body">
         <form class="form-horizontal">
           <div class="form-group">
-            <label for="classes" class="col-sm-2 control-label">Image source</label>
+            <label for="classes" class="col-sm-2 control-label">Source</label>
             <div class="col-sm-10">
               <div class="radio-inline">
-                <label><input type="radio" v-model="imageSource" value="list"> from list</label>
+                <label><input type="radio" v-model="imageSource" value="list"> image list</label>
               </div>
               <div class="radio-inline">
                 <label><input type="radio" v-model="imageSource" value="src"> src attribute</label>
@@ -28,15 +28,22 @@
             </div>
           </div>
           <div v-if="imageSource === 'list'" class="form-group">
-            <div class="col-sm-offset-2 col-sm-5">
+            <label class="col-sm-2 control-label">List</label>
+            <div class="col-sm-5">
               <select class="form-control" v-model="list" :disabled="loading">
-                <option v-for="list in lists" :value="list.name">{{list.title}}</option>
+                <option v-for="list in lists" :value="list.name">{{list.name}}</option>
               </select>
               <span v-if="loading" class="help-block">Loading...</span>
             </div>
             <div class="col-sm-offset-2 col-sm-10">
-              <div class="image__list-images">
+              <div v-if="images.length" class="image__list-images">
                 <img v-for="image in images" :src="image.url" :key="image.url" @click="selectImage(image)" class="image__list-image" :class="{'image__list-image--selected': image.name === name}" alt="">
+              </div>
+              <div v-if="error" class="form-control-static">
+                <div class="alert alert-danger"><strong>Error</strong>: {{error}}</div>
+              </div>
+              <div v-else class="form-control-static">
+                <div class="alert alert-warning"> The list contains no images </div>
               </div>
             </div>
           </div>
@@ -73,8 +80,6 @@
 <script>
 import BaseEditor from '@/editors/Base'
 
-let lists = []
-
 export default {
   name: 'image-editor',
   extends: BaseEditor,
@@ -88,14 +93,15 @@ export default {
   data() {
     return {
       list: this.token.params.list || 'global',
+      initialList: this.token.params.list,
       src: this.token.params.src,
       name: this.token.params.name,
       alt: this.token.params.alt || '',
 
+      error: null,
       imageSource: this.token.params.src ? 'src' : 'list',
-      lists: lists,
+      lists: [],
       images: [],
-      selectedImage: null,
       src_: this.token.params.src,
       loading: false,
     }
@@ -119,9 +125,11 @@ export default {
       }
     },
     list() {
-      this.images = this.findList(this.list).images
       this.name = null
       this.src_ = null
+      this.error = null
+      if (!this.list) { return }
+      this.images = this.findList(this.list).images
     },
   },
   methods: {
@@ -133,6 +141,10 @@ export default {
         this.fetchLists()
           .then(() => {
             const list = this.findList(this.list)
+            if (!list) {
+              this.error = `List "${this.initialList}" does not exist.`
+              return
+            }
             this.images = list.images
             const image = list && list.images.find(i => i.name === this.name) || null
             this.src_ = image && image.url || null
@@ -140,37 +152,12 @@ export default {
       }
     },
     fetchLists() {
-      return new Promise((resolve, reject) => {
-        this.loading = true
-        if (this.lists.lists) { return resolve() }
-        setTimeout(() => {
-          this.lists = lists = [
-            {
-              name: 'global',
-              title: 'Global',
-              images: [
-                {name: 'logo', url: 'http://lorempixel.com/400/200/abstract/6'},
-                {name: 'logo2', url: 'http://lorempixel.com/500/200/abstract/1'},
-                {name: 'logo3', url: 'http://lorempixel.com/200/300/abstract/2'},
-                {name: 'logo4', url: 'http://lorempixel.com/250/250/abstract/3'},
-                {name: 'logo5', url: 'http://lorempixel.com/200/200/abstract/4'},
-                {name: 'logo6', url: 'http://lorempixel.com/100/400/abstract/5'}
-              ]
-            },
-            {
-              name: 'cats',
-              title: 'Cats',
-              images: [
-                {name: 'juju', url: 'http://lorempixel.com/200/200/cats/3/Juju'},
-                {name: 'jester2', url: 'http://lorempixel.com/200/200/cats/2/Jester'},
-                {name: 'balder', url: 'http://lorempixel.com/200/200/cats/1/Balder'}
-              ]
-            }
-          ]
+      this.loading = true
+      return window.jQuery.get('/image_lists.json')
+        .then(lists => {
+          this.lists = lists
           this.loading = false
-          resolve(this.lists)
-        }, 800)
-      })
+        })
     },
     selectImage(image) {
       this.name = image.name

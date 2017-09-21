@@ -21,12 +21,15 @@ export function editors() {
 }
 
 export function injectEditors(vue) {
-  vue.$options.components.ProductListEditor = require('@/editors/ProductList')
+  vue.$options.components.TextEditor = require('@/editors/Text')
+  vue.$options.components.ImageEditor = require('@/editors/Image')
+  vue.$options.components.SectionEditor = require('@/editors/Section')
   vue.$options.components.ContainerEditor = require('@/editors/Container')
   vue.$options.components.RowEditor = require('@/editors/Row')
   vue.$options.components.ColumnEditor = require('@/editors/Column')
-  vue.$options.components.TextEditor = require('@/editors/Text')
-  vue.$options.components.ImageEditor = require('@/editors/Image')
+  vue.$options.components.DivEditor = require('@/editors/Div')
+  vue.$options.components.ProductListEditor = require('@/editors/ProductList')
+  vue.$options.components.HeroSliderEditor = require('@/editors/HeroSlider')
 }
 
 export function createEditors(content) {

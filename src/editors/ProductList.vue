@@ -1,7 +1,7 @@
 <template>
-  <div class="editor editor-column">
+  <div class="editor editor--product-list">
     <div class="editor__header">
-      <div class="editor__label"><a @click="edit">product list [name="{{name}}" num={{num}}]</a></div>
+      <div class="editor__label"><a @click="edit">product list "{{name}}" {{num}} products</a></div>
       <a class="editor__remove btn btn-xs btn-link`" @click.prevent="remove"><span class="icon"><i class="fa fa-times"></i></span></a>
     </div>
     <div v-if="title" class="product-list__title">{{title}}</div>
@@ -55,18 +55,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label">Features</label>
-            <div class="col-sm-10">
-              <div class="checkbox-inline">
-                <label><input type="checkbox" v-model="fullwidth"> fullwidth</label>
-              </div>
-              <div class="checkbox-inline">
-                <label><input type="checkbox" v-model="nav"> with navigation</label>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Play interval</label>
+            <label class="col-sm-2 control-label">Interval</label>
             <div class="col-sm-5">
               <div class="input-group">
                 <input class="form-control" type="number" :min="0" max="10000" step="100" v-model="play">
@@ -75,6 +64,17 @@
                 </span>
               </div>
               <span class="help-block">The number of miliseconds between slide to next page.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Features</label>
+            <div class="col-sm-10">
+              <div class="checkbox-inline">
+                <label><input type="checkbox" v-model="fullwidth"> fullwidth</label>
+              </div>
+              <div class="checkbox-inline">
+                <label><input type="checkbox" v-model="nav"> with navigation</label>
+              </div>
             </div>
           </div>
           <div class="form-group">
