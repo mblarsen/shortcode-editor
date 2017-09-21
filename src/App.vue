@@ -86,7 +86,6 @@ export default {
         throw new Error(`src element not found: ${srcId}`)
       }
       this.content = this.srcElement.value || ''
-      console.log(`editor mounted: ${srcId}`)
     },
     childrenToString(except = null) {
       return this.$children

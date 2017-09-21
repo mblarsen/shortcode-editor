@@ -37,7 +37,7 @@
             <label class="col-sm-2 control-label">List</label>
             <div class="col-sm-5">
               <select class="form-control" v-model="name" :disabled="loading">
-                <option v-for="list in listsWithSpecial" :value="list.name">{{list.title}}</option>
+                <option v-for="list in listsWithSpecial" :value="list.slug">{{list.name}}</option>
               </select>
               <span v-if="loading" class="help-block">Loading...</span>
             </div>
@@ -129,8 +129,8 @@ export default {
   computed: {
     listsWithSpecial() {
       return [
-        {name: 'random', title: 'Random'},
-        {name: 'bestsellers', title: 'Bestsellers'},
+        {slug: 'random', name: 'Random'},
+        {slug: 'bestsellers', name: 'Bestsellers'},
         ...this.lists
       ]
     },
@@ -140,23 +140,30 @@ export default {
     products() {
       return parseInt(this.num)
     },
+    list() {
+      return this.lists.find(l => l.slug === this.name)
+    },
   },
   watch: {
     isEditing(editing) {
       if (editing) {
         this.fetchLists()
       }
+    },
+    name() {
+      if (!this.title) {
+        this.title = this.list.name
+      }
     }
   },
   methods: {
     fetchLists() {
       this.loading = true
-      setTimeout(() => {
-        this.lists = [
-          {name: 'summer2018', title: 'Summer of 2018'},
-        ]
-        this.loading = false
-      }, 1500)
+      window.jQuery.get('/product_lists.json')
+        .then(lists => {
+          this.lists = lists
+          this.loading = false
+        })
     },
     properties() {
       const props = [
