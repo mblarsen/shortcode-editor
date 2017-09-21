@@ -104,6 +104,20 @@ export default {
     this.fetchImage()
   },
   watch: {
+    src() {
+      this.src_ = this.src
+    },
+    imageSource(source) {
+      if (source === 'src') {
+        this.name = null
+        this.src_ = null
+      }
+      if (source === 'list') {
+        this.src = null
+        this.src_ = null
+        this.fetchLists()
+      }
+    },
     list() {
       this.images = this.findList(this.list).images
       this.name = null
