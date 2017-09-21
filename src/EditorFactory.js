@@ -26,6 +26,7 @@ export function injectEditors(vue) {
   vue.$options.components.RowEditor = require('@/editors/Row')
   vue.$options.components.ColumnEditor = require('@/editors/Column')
   vue.$options.components.TextEditor = require('@/editors/Text')
+  vue.$options.components.ImageEditor = require('@/editors/Image')
 }
 
 export function createEditors(content) {
