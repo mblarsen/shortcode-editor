@@ -79,6 +79,7 @@ export default {
   methods: {
     select(item) {
       this.open = false
+      this.search = ''
       this.bus.$emit(this.caller, {item})
     },
     fillCatalog() {
