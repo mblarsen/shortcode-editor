@@ -40,10 +40,7 @@
             <label class="col-sm-2 control-label">List</label>
             <div class="col-sm-5">
               <select class="form-control" v-model="name" :disabled="loading">
-                <option value="" disabled>Select list</option>
-                <option value="random">Random</option>
-                <option value="bestsellers">Bestsellers</option>
-                <option v-for="list in lists" :value="list.name">{{list.title}}</option>
+                <option v-for="list in listsWithSpecial" :value="list.name">{{list.title}}</option>
               </select>
               <span v-if="loading" class="help-block">Loading...</span>
             </div>
@@ -108,6 +105,13 @@ export default {
     }
   },
   computed: {
+    listsWithSpecial() {
+      return [
+        {name: 'random', title: 'Random'},
+        {name: 'bestsellers', title: 'Bestsellers'},
+        ...this.lists
+      ]
+    },
     productWidth() {
       return `calc(100%/${this.numInList})`
     },
