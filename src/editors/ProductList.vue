@@ -6,11 +6,17 @@
     </div>
     <div v-if="title" class="product-list__title">{{title}}</div>
     <div class="product-list__products">
-      <div v-if="!fullwidth" class="product-list__product product-list__product--padding"></div>
+      <div v-if="!fullwidth" class="product-list__product product-list__product--fullwidth"></div>
+      <div v-if="nav" class="product-list__product product-list__product--nav">
+        <span class="icon"><i class="fa fa-chevron-circle-left"></i></span>
+      </div>
       <div v-for="i in products" class="product-list__product" :style="{width: productWidth}">
         <span class="icon"><i class="fa fa-product-hunt"></i></span>
       </div>
-      <div v-if="!fullwidth" class="product-list__product product-list__product--padding"></div>
+      <div v-if="nav" class="product-list__product product-list__product--nav">
+        <span class="icon"><i class="fa fa-chevron-circle-right"></i></span>
+      </div>
+      <div v-if="!fullwidth" class="product-list__product product-list__product--fullwidth"></div>
     </div>
     <edit-modal :open="isEditing">
       <template slot="title">Product list</template>
@@ -28,17 +34,6 @@
             </div>
           </div>
           <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Products</label>
-            <div class="col-sm-5">
-              <input class="form-control input-sm" type="number" :min="numInList" max="20" step="1" v-model="num">
-              <span class="help-block">The number of products to be displayed in the list.</span>
-            </div>
-          </div>
-          <div class="form-group">
             <label class="col-sm-2 control-label">List</label>
             <div class="col-sm-5">
               <select class="form-control" v-model="name" :disabled="loading">
@@ -48,13 +43,38 @@
             </div>
           </div>
           <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+            <label class="col-sm-2 control-label">Products</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input class="form-control" type="number" :min="numInList" max="20" step="1" v-model="num">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" @click.prevent="num = 8">default</button>
+                </span>
+              </div>
+              <span class="help-block">The number of products to be displayed in the list.</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Features</label>
+            <div class="col-sm-10">
               <div class="checkbox-inline">
                 <label><input type="checkbox" v-model="fullwidth"> fullwidth</label>
               </div>
               <div class="checkbox-inline">
                 <label><input type="checkbox" v-model="nav"> with navigation</label>
               </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Play interval</label>
+            <div class="col-sm-5">
+              <div class="input-group">
+                <input class="form-control" type="number" :min="0" max="10000" step="100" v-model="play">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" @click.prevent="play = 2500">default</button>
+                </span>
+              </div>
+              <span class="help-block">The number of miliseconds between slide to next page.</span>
             </div>
           </div>
           <div class="form-group">
@@ -142,6 +162,7 @@ export default {
       const props = [
         `name="${this.name}"`,
         `num=${this.num}`,
+        `play=${this.play}`,
         `fullwidth=${this.fullwidth ? 'true' : 'false'}`,
         `nav=${this.nav ? 'true' : 'false'}`,
       ]
@@ -179,8 +200,13 @@ export default {
   background-color: var(--content-color);
   border-radius: var(--box-border-radius);
 }
-.product-list__product--padding {
+.product-list__product--fullwidth {
   background-color: var(--gray-border-color);
-  min-width: 5%;
+  min-width: 4%;
+}
+.product-list__product--nav {
+  color: #999;
+  background-color: var(--gray-border-color);
+  min-width: 2%;
 }
 </style>
