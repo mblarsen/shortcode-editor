@@ -1,6 +1,6 @@
 .editor {
   background-color: var(--gray-bg-color);
-  border: 1px solid var(--gray-border-color);
+  border: 2px solid var(--gray-border-color);
   border-radius: var(--box-border-radius);
   padding: 1rem;
 }
@@ -12,10 +12,12 @@
   justify-content: space-between;
 }
 .editor__label {
-  color: var(--gray-color);
   font-size: 90%;
   margin-top: -10px;
   margin-left: -3px;
+}
+.editor__label, .editor__label a {
+  color: #999;
 }
 .editor__remove {
   margin-top: -12px;

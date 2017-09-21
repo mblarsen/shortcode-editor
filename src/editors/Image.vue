@@ -205,7 +205,7 @@ export default {
   width: 100%;
 }
 .image__list-image:hover {
-  border-color: #337ab7;
+  border-color: var(--highlight-border-color);
 }
 .image__list-image--selected {
   border-color: #5cb85c;
