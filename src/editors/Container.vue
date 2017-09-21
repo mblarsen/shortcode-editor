@@ -35,7 +35,7 @@
         </form>
       </template>
       <template slot="footer">
-        <button @click="save" class="btn btn-success">Save</button>
+        <button @click="save" class="btn btn-success">Close</button>
       </template>
     </edit-modal>
   </div>

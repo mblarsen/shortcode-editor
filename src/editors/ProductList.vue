@@ -72,7 +72,7 @@
         </div>
       </template>
       <template slot="footer">
-        <button @click="save" class="btn btn-success" :disabled="loading">Save</button>
+        <button @click="save" class="btn btn-success" :disabled="loading">Close</button>
       </template>
     </edit-modal>
   </div>
