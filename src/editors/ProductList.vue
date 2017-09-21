@@ -1,14 +1,16 @@
 <template>
   <div class="editor editor-column">
     <div class="editor__header">
-      <div class="editor__label"><a @click="edit">product list</a></div>
+      <div class="editor__label"><a @click="edit">product list [name="{{name}}" num={{num}}]</a></div>
       <a class="editor__remove btn btn-xs btn-link`" @click.prevent="remove"><span class="icon"><i class="fa fa-times"></i></span></a>
     </div>
-    <div class="product-list__title">{{num}} product(s) from {{name}} <template v-if="title">with title {{title}}</template></div>
+    <div v-if="title" class="product-list__title">{{title}}</div>
     <div class="product-list__products">
+      <div v-if="!fullwidth" class="product-list__product product-list__product--padding"></div>
       <div v-for="i in products" class="product-list__product" :style="{width: productWidth}">
         <span class="icon"><i class="fa fa-product-hunt"></i></span>
       </div>
+      <div v-if="!fullwidth" class="product-list__product product-list__product--padding"></div>
     </div>
     <edit-modal :open="isEditing">
       <template slot="title">Product list</template>
@@ -32,7 +34,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label">Products</label>
             <div class="col-sm-5">
-              <input class="form-control input-sm" type="number" min="1" max="20" step="1" v-model="num">
+              <input class="form-control input-sm" type="number" :min="numInList" max="20" step="1" v-model="num">
               <span class="help-block">The number of products to be displayed in the list.</span>
             </div>
           </div>
@@ -152,6 +154,14 @@ export default {
 }
 </script>
 <style>
+.product-list__title {
+  color: #777;
+  font-weight: bold;
+  font-size: 115%;
+  margin-bottom: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+}
 .product-list__products {
   display: flex;
   justify-items: space-between;
@@ -168,5 +178,9 @@ export default {
   color: var(--content-dimmed-color);
   background-color: var(--content-color);
   border-radius: var(--box-border-radius);
+}
+.product-list__product--padding {
+  background-color: var(--gray-border-color);
+  min-width: 5%;
 }
 </style>
