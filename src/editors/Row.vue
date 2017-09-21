@@ -22,13 +22,18 @@
           <div class="form-group">
             <label for="classes" class="col-sm-2 control-label">Classes</label>
             <div class="col-sm-10">
-              <input id="classes" class="form-control" type="text" v-model="klass" placeholder="CSS classes">
+              <div class="input-group">
+                <input class="form-control" type="text" v-model="klass" placeholder="CSS classes">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" @click.prevent="klass = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
+                </span>
+              </div>
             </div>
           </div>
         </form>
       </template>
       <template slot="footer">
-        <button @click="save" class="btn btn-xs btn-success">Close</button>
+        <button @click="save" class="btn btn-success">Close</button>
       </template>
     </edit-modal>
   </div>
