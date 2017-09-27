@@ -33,6 +33,7 @@ export function injectEditors(vue) {
   vue.$options.components.AddressBoxEditor = require('@/editors/AddressBox')
   vue.$options.components.LogoEditor = require('@/editors/Logo')
   vue.$options.components.PageTitleEditor = require('@/editors/PageTitle')
+  vue.$options.components.ServiceBoxEditor = require('@/editors/ServiceBox')
 }
 
 export function createEditors(content) {
@@ -52,6 +53,9 @@ export function createEditors(content) {
       token.index = index
       if (token.type === Tokenizer.TEXT) {
         return new Editor('text-editor', token)
+      }
+      if (token.name === 'service') {
+        return new Editor('service-box-editor', token)
       }
       return new Editor(`${token.name}-editor`, token)
     })
