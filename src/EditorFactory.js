@@ -30,6 +30,9 @@ export function injectEditors(vue) {
   vue.$options.components.DivEditor = require('@/editors/Div')
   vue.$options.components.ProductListEditor = require('@/editors/ProductList')
   vue.$options.components.HeroSliderEditor = require('@/editors/HeroSlider')
+  vue.$options.components.AddressBoxEditor = require('@/editors/AddressBox')
+  vue.$options.components.LogoEditor = require('@/editors/Logo')
+  vue.$options.components.PageTitleEditor = require('@/editors/PageTitle')
 }
 
 export function createEditors(content) {
