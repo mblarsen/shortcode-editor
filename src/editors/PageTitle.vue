@@ -108,7 +108,10 @@ export default {
   margin-bottom: 1rem;
 }
 .page-title__titles {
-  flex: 1
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .page-title__padding {
   height: 100%;
