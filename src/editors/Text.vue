@@ -1,7 +1,7 @@
 <template>
   <div class="editor editor-text">
     <div class="editor__header">
-      <div class="editor__label"><a @click="edit">html</a></div>
+      <div class="editor__label"><a @click="edit">text</a></div>
       <a class="editor__remove btn btn-xs btn-link`" @click.prevent="remove"><span class="icon"><i class="fa fa-times"></i></span></a>
     </div>
     <div v-if="!isEditing">
@@ -22,7 +22,7 @@ export default {
   extends: BaseEditor,
   editorTitle: 'Text',
   editorDescription: 'This component will render HTML',
-  editorTemplate: '<h1>Title</h1>',
+  editorTemplate: '<h1>Cupcakes</h1><p>Wafer cake cheesecake pastry gummi bears cupcake gummies. Tootsie roll jelly chocolate.</p>',
   editorContext: ['root', 'container'],
   data() {
     return {
