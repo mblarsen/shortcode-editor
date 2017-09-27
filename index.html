@@ -15,10 +15,16 @@
       <div class="col-sm-offset-1 col-sm-10">
         <div class="form-horizontal">
           <div class="form-group">
-            <label class="col-sm-3 control-label">Body</label>
+            <label class="col-sm-3 control-label">front body</label>
             <div class="col-sm-9">
               <textarea id="slot-body" name="slot-body" class="hidden">
-                [product-list title="New Arrivals" fullwidth=false name="random"/]
+
+              [container]
+                [hero-slider list="frontslider"/]
+                [product-list play="false" name="bestsellers" title="Bestsellers" num=8/]
+                [product-list play="false" name="random" title="New Items" sort="newest" num=8/]
+              [/container]
+
               </textarea>
               <div class="slot-editor" src="slot-body"></div>
             </div>
@@ -33,12 +39,59 @@
       <div class="col-sm-offset-1 col-sm-10">
         <div class="form-horizontal">
           <div class="form-group">
-            <label class="col-sm-3 control-label">Footer</label>
+            <label class="col-sm-3 control-label">global footer</label>
             <div class="col-sm-9">
               <textarea id="slot-footer" name="slot-footer" class="hidden">
                 [row][column][image list="cats" name="balder"/][/column][column][/column][column][/column][/row]
               </textarea>
               <div class="slot-editor" src="slot-footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-sm-offset-1 col-sm-10">
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-3 control-label">about body</label>
+            <div class="col-sm-9">
+              <textarea id="slot-about" name="slot-about" class="hidden">
+
+              [container]
+                [page-title title="About Us"/]
+                <p> Dolor voluptas itaque obcaecati libero rem. Animi similique quaerat elit cumque a, corporis Perferendis reprehenderit tenetur commodi corporis deserunt Quas sunt dicta amet quia facere Adipisci ab minus adipisci vero. </p>
+                [section]
+                  [row]
+                    [column]
+                      [service icon="fa-truck"]
+                          <h3>FAST DELIVERY</h3>
+                          <p>Sit ut quo fuga vel praesentium? Vitae libero enim totam similique ipsam Porro nulla tempora voluptatem est perferendis. Vero ullam totam rem magni deleniti Natus eius iste voluptate hic consequuntur?</p>
+                      [/service]
+                    [/column]
+
+                    [column]
+                      [service icon="fa-star"]
+                        <h3>HIGH QUALITY</h3>
+                        <p>Consectetur officiis eos nostrum minus ex. Ipsum ex veniam repellat vel aliquam libero labore consectetur Eligendi culpa nemo consequatur eius sunt nihil aperiam Suscipit adipisci ratione distinctio laudantium ipsa? Consequuntur</p>
+                      [/service]
+                    [/column]
+
+                    [column]
+                      [service icon="fa-smile-o"]
+                        <h3>BEST SERVICE</h3>
+                        <p>Sit beatae sequi dolor laborum at Nisi aperiam velit iusto voluptate doloribus Maiores sed ab quibusdam quidem tempora Expedita libero minus eligendi porro maxime? Rerum voluptas saepe error nam sapiente</p>
+                      [/service]
+                    [/column]
+                  [/row]
+                [/section]
+              [/container]
+
+              </textarea>
+              <div class="slot-editor" src="slot-about"></div>
             </div>
           </div>
         </div>
