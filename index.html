@@ -42,7 +42,23 @@
             <label class="col-sm-3 control-label">global footer</label>
             <div class="col-sm-9">
               <textarea id="slot-footer" name="slot-footer" class="hidden">
-                [row][column][image list="cats" name="balder"/][/column][column][/column][column][/column][/row]
+
+              [container]
+                [div class="foot_wrapper"]
+                  [row]
+                    [sitemap class="foot__column col-lg-6 col-md-12" classPrefix="foot" /]
+                    [div class="foot__column col-lg-3 col-md-6 col-sm-6 col-xs-12"]
+                        <h5 class="foot__title">{{'page.aboutUs' | trans}}</h5>
+                        <p class="foot__content">Shipnity is a very slick and clean e-commerce solution. Creating an awesome store is easier than you can imagine.</p>
+                    [/div]
+                    [div class="foot__column foot__column--get-in-touch col-lg-3 col-md-6 col-sm-6 col-xs-12"]
+                        [address-box/]
+                        [social-icons/]
+                    [/div]
+                  [/row]
+                [/div]
+              [/container]
+
               </textarea>
               <div class="slot-editor" src="slot-footer"></div>
             </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="editor editor-container">
     <div class="editor__header">
-      <div class="editor__label"><a @click="edit">container <span v-if="klass">[{{klass}}]</span></a></div>
+      <div class="editor__label"><a @click="edit">container<span v-if="klass">, class: {{klass}}</span></a></div>
       <a class="editor__remove btn btn-xs btn-link`" @click.prevent="remove"><span class="icon"><i class="fa fa-times"></i></span></a>
     </div>
     <div class="editor__children editor__children--column">
@@ -20,7 +20,8 @@
       <template slot="body">
         <form class="form-horizontal">
           <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+            <label class="col-sm-2 control-label">Features</label>
+            <div class="col-sm-10">
               <div class="checkbox-inline">
                 <label><input type="checkbox" v-model="fullwidth"> fullwidth</label>
               </div>

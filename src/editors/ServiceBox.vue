@@ -1,7 +1,7 @@
 <template>
   <div class="editor editor--service-box">
     <div class="editor__header">
-      <div class="editor__label"><a @click="edit">service-box</a></div>
+      <div class="editor__label"><a @click="edit">service-box<span v-if="klass">, class: {{klass}}</span></a></div>
       <a class="editor__remove btn btn-xs btn-link`" @click.prevent="remove"><span class="icon"><i class="fa fa-times"></i></span></a>
     </div>
     <div class="editor__children editor__children--service-box editor__children--column">
