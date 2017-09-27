@@ -22,7 +22,7 @@
               <div class="input-group">
                 <input class="form-control" type="text" v-model="title">
                 <span class="input-group-btn">
-                  <button class="btn btn-default" @click="title = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
+                  <button class="btn btn-default" @click.prevent="title = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
                 </span>
               </div>
             </div>
@@ -33,7 +33,7 @@
               <div class="input-group">
                 <input class="form-control" type="text" v-model="subtitle" placeholder="Optional subtitle">
                 <span class="input-group-btn">
-                  <button class="btn btn-default" @click="subtitle = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
+                  <button class="btn btn-default" @click.prevent="subtitle = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
                 </span>
               </div>
             </div>

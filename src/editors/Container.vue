@@ -20,15 +20,20 @@
       <template slot="body">
         <form class="form-horizontal">
           <div class="form-group">
-            <label for="classes" class="col-sm-2 control-label">Classes</label>
-            <div class="col-sm-10">
-              <input id="classes" class="form-control" type="text" v-model="klass" placeholder="CSS classes">
-            </div>
-          </div>
-          <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <div class="checkbox-inline">
                 <label><input type="checkbox" v-model="fullwidth"> fullwidth</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="classes" class="col-sm-2 control-label">Classes</label>
+            <div class="col-sm-10">
+              <div class="input-group">
+                <input class="form-control" type="text" v-model="klass" placeholder="CSS classes">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" @click.prevent="klass = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
+                </span>
               </div>
             </div>
           </div>
