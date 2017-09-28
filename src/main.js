@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'development') {
           if (url === '/product_lists.json') {
             resolve(productLists)
           } else if (url === '/image_lists.json') {
-            resolve(imageLists.map(i => (i.images = i.images || [], i))) // eslint-disable-line
+            resolve({image_lists: imageLists.map(i => (i.images = i.images || [], i))}) // eslint-disable-line
           } else {
             reject()
           }
