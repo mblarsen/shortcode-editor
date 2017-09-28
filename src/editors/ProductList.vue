@@ -28,7 +28,7 @@
               <div class="input-group">
                 <input class="form-control" type="text" v-model="title" placeholder="Optional list title">
                 <span class="input-group-btn">
-                  <button class="btn btn-default" @click="title = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
+                  <button class="btn btn-default" @click.prevent="title = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
                 </span>
               </div>
             </div>
@@ -91,7 +91,7 @@
         </div>
       </template>
       <template slot="footer">
-        <button @click="save" class="btn btn-success" :disabled="loading">Close</button>
+        <button @click.prevent="save" class="btn btn-success" :disabled="loading">Close</button>
       </template>
     </edit-modal>
   </div>

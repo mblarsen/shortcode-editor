@@ -9,7 +9,7 @@
     </div>
     <div v-if="isEditing">
       <textarea v-model="content" class="form-control text-editor__content--editing" cols="30" rows="10"></textarea>
-      <button @click="save" class="btn btn-xs btn-success">Close</button>
+      <button @click.prevent="save" class="btn btn-xs btn-success">Close</button>
     </div>
   </div>
 </template>

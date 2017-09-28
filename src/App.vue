@@ -17,11 +17,11 @@
     </div>
     <div class="row">
       <div class="col">
-        <button v-if="undoLog.length > 0" @click="undo" class="btn btn-xs btn-default">
+        <button v-if="undoLog.length > 0" @click.prevent="undo" class="btn btn-xs btn-default">
           <span class="icon"><i class="fa fa-arrow-left"></i></span>
           <span>undo</span>
         </button>
-        <button v-if="redoLog.length > 0" @click="redo" class="btn btn-xs btn-default">
+        <button v-if="redoLog.length > 0" @click.prevent="redo" class="btn btn-xs btn-default">
           <span>redo</span>
           <span class="icon"><i class="fa fa-arrow-right"></i></span>
         </button>

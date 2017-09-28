@@ -60,7 +60,7 @@
         </div>
       </template>
       <template slot="footer">
-        <button @click="save" class="btn btn-success">Close</button>
+        <button @click.prevent="save" class="btn btn-success">Close</button>
       </template>
     </edit-modal>
   </div>

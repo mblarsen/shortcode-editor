@@ -65,7 +65,7 @@
         </div>
       </template>
       <template slot="footer">
-        <button @click="save" class="btn btn-success" :disabled="loading">Close</button>
+        <button @click.prevent="save" class="btn btn-success" :disabled="loading">Close</button>
       </template>
     </edit-modal>
   </div>

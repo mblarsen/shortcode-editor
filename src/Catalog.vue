@@ -14,12 +14,12 @@
               <div v-for="item in filteredItems" class="editor-catalog__item">
                 <div class="editor-catalog__item__title">{{item.title}}</div>
                 <div class="editor-catalog__item__description">{{item.description}}</div>
-                <button @click="select(item.template)" class="editor-catalog__item__select btn btn-xs btn-block btn-success">select</button>
+                <button @click.prevent="select(item.template)" class="editor-catalog__item__select btn btn-xs btn-block btn-success">select</button>
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button @click="open = false" class="btn btn-sm btn-default">Close</button>
+            <button @click.prevent="open = false" class="btn btn-sm btn-default">Close</button>
           </div>
         </div>
       </div>
