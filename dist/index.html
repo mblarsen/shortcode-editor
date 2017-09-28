@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=utf-8>
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <title>editor</title>
+    <link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous>
+    <link href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css rel=stylesheet integrity=sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN crossorigin=anonymous>
+  <link href=/static/css/app.f4766c.css rel=stylesheet></head>
+  <body>
+    <div id=app class=container></div>
+
+    <div class=row>
+      <div class="col-sm-offset-1 col-sm-10">
+        <div class=form-horizontal>
+          <div class=form-group>
+            <label class="col-sm-3 control-label">front body</label>
+            <div class=col-sm-9>
+              <textarea id=slot-body name=slot-body class=hidden>
+
+              [container]
+                [hero-slider list="frontslider"/]
+                [product-list play="false" name="bestsellers" title="Bestsellers" num=8/]
+                [product-list play="false" name="random" title="New Items" sort="newest" num=8/]
+              [/container]
+
+              </textarea>
+              <div class=slot-editor src=slot-body></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class=row>
+      <div class="col-sm-offset-1 col-sm-10">
+        <div class=form-horizontal>
+          <div class=form-group>
+            <label class="col-sm-3 control-label">global footer</label>
+            <div class=col-sm-9>
+              <textarea id=slot-footer name=slot-footer class=hidden>
+
+              [container]
+                [div class="foot_wrapper"]
+                  [row]
+                    [sitemap class="foot__column col-lg-6 col-md-12" classPrefix="foot" /]
+                    [div class="foot__column col-lg-3 col-md-6 col-sm-6 col-xs-12"]
+                        <h5 class=foot__title>{{'page.aboutUs' | trans}}</h5>
+                        <p class=foot__content>Shipnity is a very slick and clean e-commerce solution. Creating an awesome store is easier than you can imagine.</p>
+                    [/div]
+                    [div class="foot__column foot__column--get-in-touch col-lg-3 col-md-6 col-sm-6 col-xs-12"]
+                        [address-box/]
+                        [social-icons/]
+                    [/div]
+                  [/row]
+                [/div]
+              [/container]
+
+              </textarea>
+              <div class=slot-editor src=slot-footer></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class=row>
+      <div class="col-sm-offset-1 col-sm-10">
+        <div class=form-horizontal>
+          <div class=form-group>
+            <label class="col-sm-3 control-label">about body</label>
+            <div class=col-sm-9>
+              <textarea id=slot-about name=slot-about class=hidden>
+
+              [container]
+                [page-title title="About Us"/]
+                <p> Dolor voluptas itaque obcaecati libero rem. Animi similique quaerat elit cumque a, corporis Perferendis reprehenderit tenetur commodi corporis deserunt Quas sunt dicta amet quia facere Adipisci ab minus adipisci vero. </p>
+                [section]
+                  [row]
+                    [column]
+                      [service icon="fa-truck"]
+                          <h3>FAST DELIVERY</h3>
+                          <p>Sit ut quo fuga vel praesentium? Vitae libero enim totam similique ipsam Porro nulla tempora voluptatem est perferendis. Vero ullam totam rem magni deleniti Natus eius iste voluptate hic consequuntur?</p>
+                      [/service]
+                    [/column]
+
+                    [column]
+                      [service icon="fa-star"]
+                        <h3>HIGH QUALITY</h3>
+                        <p>Consectetur officiis eos nostrum minus ex. Ipsum ex veniam repellat vel aliquam libero labore consectetur Eligendi culpa nemo consequatur eius sunt nihil aperiam Suscipit adipisci ratione distinctio laudantium ipsa? Consequuntur</p>
+                      [/service]
+                    [/column]
+
+                    [column]
+                      [service icon="fa-smile-o"]
+                        <h3>BEST SERVICE</h3>
+                        <p>Sit beatae sequi dolor laborum at Nisi aperiam velit iusto voluptate doloribus Maiores sed ab quibusdam quidem tempora Expedita libero minus eligendi porro maxime? Rerum voluptas saepe error nam sapiente</p>
+                      [/service]
+                    [/column]
+                  [/row]
+                [/section]
+              [/container]
+
+              </textarea>
+              <div class=slot-editor src=slot-about></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script>
+  <script type=text/javascript src=/static/js/manifest.892b9f.js></script><script type=text/javascript src=/static/js/vendor.7c6f27.js></script><script type=text/javascript src=/static/js/app.927c08.js></script></body>
+</html>
