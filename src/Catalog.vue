@@ -1,7 +1,7 @@
 <template>
   <div class="editor-catalog">
     <div class="modal fade" :class="{'is-active': open}">
-      <div class="modal-dialog">
+      <div class="modal-dialog editor-catalog__modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <div class="modal-title">Catalog: {{context}}</div>
