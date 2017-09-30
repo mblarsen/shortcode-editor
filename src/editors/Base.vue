@@ -34,7 +34,7 @@ export default {
     propertiesToString() {
       const props = this.properties()
       this.klass && props.push(`class="${this.klass}"`)
-      return props.length > 1
+      return props.length > 0
         ? ' ' + props.join(' ')
         : ''
     },
