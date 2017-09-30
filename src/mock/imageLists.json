@@ -1,31 +1,52 @@
 {
     "image_lists": [
         {
-            "created_at": "2017-03-15T11:39:28.130+07:00",
             "id": 1,
-            "media_type": 0,
             "name": "frontslider",
-            "shop_id": 47,
-            "updated_at": "2017-03-15T11:39:28.130+07:00",
-            "shop_images": []
+            "shop_images": [
+                {
+                    "id": 12,
+                    "name": "Autumn",
+                    "thumb": "https://codeboutique.shipnity.pro.s3.amazonaws.com/static/media/shop_image/Autumn/12-Autumn.jpg"
+                },
+                {
+                    "id": 13,
+                    "name": "Spring",
+                    "thumb": "https://codeboutique.shipnity.pro.s3.amazonaws.com/static/media/shop_image/Spring/13-Spring.jpg"
+                },
+                {
+                    "id": 14,
+                    "name": "Winter",
+                    "thumb": "https://codeboutique.shipnity.pro.s3.amazonaws.com/static/media/shop_image/Winter/14-Winter.jpg"
+                }
+            ]
         },
         {
-            "created_at": "2017-04-01T23:17:49.207+07:00",
             "id": 2,
-            "media_type": 0,
-            "name": "cats",
-            "shop_id": 47,
-            "updated_at": "2017-04-01T23:17:49.207+07:00",
-            "shop_images": []
+            "name": "chrismas333",
+            "shop_images": [
+                {
+                    "id": 6,
+                    "name": "",
+                    "thumb": "https://codeboutique.shipnity.pro.s3.amazonaws.com/static/media/shop_image/6-.jpg"
+                }
+            ]
         },
         {
-            "created_at": "2017-07-03T15:36:37.311+07:00",
             "id": 3,
-            "media_type": 0,
             "name": "global",
-            "shop_id": 47,
-            "updated_at": "2017-07-03T15:36:37.311+07:00",
-            "shop_images": []
+            "shop_images": [
+                {
+                    "id": 11,
+                    "name": "contact",
+                    "thumb": "https://codeboutique.shipnity.pro.s3.amazonaws.com/static/media/shop_image/contact/11-contact.jpg"
+                },
+                {
+                    "id": 17,
+                    "name": "logo",
+                    "thumb": "https://codeboutique.shipnity.pro.s3.amazonaws.com/static/media/shop_image/logo/17-logo.jpg"
+                }
+            ]
         }
     ]
 }

@@ -39,11 +39,11 @@
               <div v-if="images.length" class="image__list-images">
                 <img v-for="image in images" :src="image.url" :key="image.url" @click="selectImage(image)" class="image__list-image" :class="{'image__list-image--selected': image.name === name}" alt="">
               </div>
-              <div v-if="error" class="form-control-static">
-                <div class="alert alert-danger"><strong>Error</strong>: {{error}}</div>
-              </div>
               <div v-else class="form-control-static">
                 <div class="alert alert-warning"> The list contains no images </div>
+              </div>
+              <div v-if="error" class="form-control-static">
+                <div class="alert alert-danger"><strong>Error</strong>: {{error}}</div>
               </div>
             </div>
           </div>
@@ -157,6 +157,8 @@ export default {
         .then(({image_lists: lists}) => {
           this.lists = (lists || []).map(list => {
             list.images = list.shop_images
+                .map(i => (i.url = i.thumb, i)) // eslint-disable-line
+                // .map(i => (i.url = i.url.replace('https', 'http'), i)) // eslint-disable-line
             return list
           })
           this.loading = false
@@ -193,6 +195,7 @@ export default {
 }
 .image__list-image {
   border: 5px solid transparent;
+  min-height: 3rem;
   width: 100%;
 }
 .image__list-image:hover {

@@ -21,13 +21,13 @@
             </div>
             <div class="col-sm-offset-2 col-sm-10">
               <div v-if="images.length" class="hero-slider__list-images">
-                <img v-for="image in images" :src="image.url" :key="image.url" class="hero-slider__list-image" :class="{'hero-slider__list-image--selected': image.name === name}" alt="">
-              </div>
-              <div v-if="error" class="form-control-static">
-                <div class="alert alert-danger"><strong>Error</strong>: {{error}}</div>
+                <img v-for="image in images" :src="image.url" :key="image.url" class="hero-slider__list-image">
               </div>
               <div v-else class="form-control-static">
                 <div class="alert alert-warning">The list contains no images</div>
+              </div>
+              <div v-if="error" class="form-control-static">
+                <div class="alert alert-danger"><strong>Error</strong>: {{error}}</div>
               </div>
             </div>
           </div>
@@ -127,6 +127,8 @@ export default {
         .then(({image_lists: lists}) => {
           this.lists = (lists || []).map(list => {
             list.images = list.shop_images
+                .map(i => (i.url = i.thumb, i)) // eslint-disable-line
+                // .map(i => (i.url = i.url.replace('https', 'http'), i)) // eslint-disable-line
             return list
           })
           this.loading = false
