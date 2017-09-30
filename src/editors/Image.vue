@@ -154,7 +154,7 @@ export default {
     fetchLists() {
       this.loading = true
       return window.jQuery.get('/image_lists.json')
-        .then(lists => {
+        .then(({image_lists: lists}) => {
           this.lists = lists
           this.loading = false
         })
