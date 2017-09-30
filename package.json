@@ -1,6 +1,6 @@
 {
   "name": "editor",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Visual editor that works with code-slots",
   "author": "Michael Bøcker-Larsen <mblarsen@gmail.com>",
   "private": true,
