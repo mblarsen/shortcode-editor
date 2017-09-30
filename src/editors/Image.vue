@@ -158,7 +158,7 @@ export default {
           this.lists = (lists || []).map(list => {
             list.images = list.shop_images
                 .map(i => (i.url = i.thumb, i)) // eslint-disable-line
-                // .map(i => (i.url = i.url.replace('https', 'http'), i)) // eslint-disable-line
+                .map(i => (i.url = i.url.replace(/https?:/, window.location.protocol), i)) // eslint-disable-line
             return list
           })
           this.loading = false
