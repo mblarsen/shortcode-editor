@@ -15,6 +15,7 @@
   font-size: 90%;
   margin-top: -10px;
   margin-left: -3px;
+  cursor: pointer;
 }
 .editor__label, .editor__label a {
   color: #999;
