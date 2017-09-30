@@ -22,6 +22,8 @@
 .editor__remove {
   margin-top: -12px;
   margin-right: -10px;
+  background-color: transparent;
+  color: #999;
 }
 .editor__children {
   display: flex;
