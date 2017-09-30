@@ -167,9 +167,12 @@ export default {
   margin-top: 1rem;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, minmax(10em, 1fr));
   grid-gap: 0.5rem;
   max-height: 35vh;
   overflow-y: auto;
+}
+.hero-slider__list-image {
+  max-width: 100%
 }
 </style>
