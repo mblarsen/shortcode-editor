@@ -129,7 +129,7 @@ export default {
       this.src_ = null
       this.error = null
       if (!this.list) { return }
-      this.images = this.findList(this.list).images
+      this.images = this.findList(this.list).shop_images
     },
   },
   methods: {

@@ -117,7 +117,7 @@ export default {
             this.error = `List "${this.initialList}" does not exist.`
             return
           }
-          this.images = list.images
+          this.images = list.shop_images
         })
     },
     fetchLists() {
