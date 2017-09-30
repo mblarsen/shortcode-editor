@@ -117,7 +117,7 @@ export default {
             this.error = `List "${this.initialList}" does not exist.`
             return
           }
-          this.images = list.shop_images
+          this.images = list.shop_images || []
         })
     },
     fetchLists() {
@@ -125,7 +125,7 @@ export default {
       this.loading = true
       return window.jQuery.get('/image_lists.json')
         .then(({image_lists: lists}) => {
-          this.lists = lists
+          this.lists = lists || []
           this.loading = false
         })
     },

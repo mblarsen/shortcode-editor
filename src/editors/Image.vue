@@ -129,7 +129,7 @@ export default {
       this.src_ = null
       this.error = null
       if (!this.list) { return }
-      this.images = this.findList(this.list).shop_images
+      this.images = this.findList(this.list).shop_images || []
     },
   },
   methods: {
@@ -155,7 +155,7 @@ export default {
       this.loading = true
       return window.jQuery.get('/image_lists.json')
         .then(({image_lists: lists}) => {
-          this.lists = lists
+          this.lists = lists || []
           this.loading = false
         })
     },
