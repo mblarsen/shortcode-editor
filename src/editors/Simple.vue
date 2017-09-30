@@ -4,7 +4,6 @@
       <div class="editor__label"><a @click="edit">{{tag}}<span v-if="klass">, class: {{klass}}</span></a></div>
       <a class="editor__remove btn btn-xs btn-link`" @click.prevent="remove"><span class="icon"><i class="fa fa-times"></i></span></a>
     </div>
-    <add-button context="container" :caller="callerId"/>
     <edit-modal :open="isEditing">
       <template slot="title">
         {{$options.editorTitle}}
