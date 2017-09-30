@@ -24,6 +24,8 @@
   margin-right: -10px;
   background-color: transparent;
   color: #999;
+  width: 2rem;
+  height: 2rem;
 }
 .editor__children {
   display: flex;
