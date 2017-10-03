@@ -8,25 +8,46 @@
       <div v-html="content" @click="edit" class="text-editor__content"></div>
     </div>
     <div v-if="isEditing">
-      <textarea v-model="content" class="form-control text-editor__content--editing" cols="30" rows="10"></textarea>
+      <ckeditor v-model="content" :config="config"></ckeditor>
       <button @click.prevent="save" class="btn btn-xs btn-success">Close</button>
     </div>
   </div>
 </template>
 <script>
 import BaseEditor from '@/editors/Base'
+import Ckeditor from 'vue-ckeditor2'
 
 export default {
   name: 'text-editor',
   props: ['token'],
+
   extends: BaseEditor,
   editorTitle: 'Text',
   editorDescription: 'This component will render HTML',
   editorTemplate: '<h1>Cupcakes</h1><p>Wafer cake cheesecake pastry gummi bears cupcake gummies. Tootsie roll jelly chocolate.</p>',
   editorContext: ['root', 'container'],
+
+  components: {
+    Ckeditor,
+  },
   data() {
     return {
       content: '',
+      config: {
+        toolbar: [
+          { name: 'document', items: [ 'Source', 'Templates' ] },
+          { name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] },
+          { name: 'clipboard', items: [ 'Undo', 'Redo' ] },
+          '/',
+          { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', '-', 'CopyFormatting', 'RemoveFormat' ] },
+          { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
+          { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+          { name: 'insert', items: [ 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ] },
+          '/',
+          { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
+        ],
+        height: 300
+      }
     }
   },
   created() {
@@ -37,7 +58,7 @@ export default {
   methods: {
     toTemplate() {
       return this.content
-    }
+    },
   }
 }
 </script>
