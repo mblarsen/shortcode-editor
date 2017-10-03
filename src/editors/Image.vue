@@ -48,6 +48,17 @@
             </div>
           </div>
           <div class="form-group">
+            <label for="classes" class="col-sm-2 control-label">Link to</label>
+            <div class="col-sm-10">
+              <div class="input-group">
+                <input class="form-control" type="text" v-model="dest" placeholder="https://www.google.com">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" @click.prevent="dest = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
             <label for="classes" class="col-sm-2 control-label">Alt text</label>
             <div class="col-sm-10">
               <div class="input-group">
@@ -95,6 +106,7 @@ export default {
       list: this.token.params.list || 'global',
       initialList: this.token.params.list,
       src: this.token.params.src,
+      dest: this.token.params.dest,
       name: this.token.params.name,
       alt: this.token.params.alt || '',
 
@@ -173,6 +185,7 @@ export default {
       const props = []
       this.name && props.push(`name="${this.name}"`)
       this.src && props.push(`src="${this.src}"`)
+      this.dest && props.push(`dest="${this.dest}"`)
       this.alt && props.push(`alt="${this.alt}"`)
       this.list && this.list !== 'global' && props.push(`list="${this.list}"`)
       return props
