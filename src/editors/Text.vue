@@ -46,6 +46,7 @@ export default {
           '/',
           { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
         ],
+        entities: false,
         height: 300
       }
     }
