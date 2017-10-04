@@ -102,9 +102,9 @@ export default {
   },
   computed: {
     cardStyle() {
-      let background = this.color || 'linear-gradient(rgba(0,0,0,0.33),rgba(0,0,0,0.33))'
+      let background = this.color || 'linear-gradient(rgba(243,243,243,1),rgba(200,200,200,1))'
       background = this.src
-        ? `${background}, url(${this.src})`
+        ? `url(${this.src}), ${background}`
         : background
 
       return {
