@@ -33,6 +33,7 @@ export function injectEditors(vue) {
   vue.$options.components.AddressBoxEditor = require('@/editors/AddressBox')
   vue.$options.components.LogoEditor = require('@/editors/Logo')
   vue.$options.components.PageTitleEditor = require('@/editors/PageTitle')
+  vue.$options.components.CardEditor = require('@/editors/Card')
   vue.$options.components.ServiceBoxEditor = require('@/editors/ServiceBox')
   vue.$options.components.SocialIconsEditor = require('@/editors/SocialIcons')
   vue.$options.components.SitemapEditor = require('@/editors/Sitemap')

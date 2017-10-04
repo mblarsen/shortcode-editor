@@ -23,6 +23,9 @@ export default {
       isEditing: false,
     }
   },
+  beforeCreate() {
+    this.$options.components.SimpleInput = require('@/editors/Form/Simple')
+  },
   created() {
     this.bus.$on(this.callerId, ({item}) => (this.append(item)))
   },
