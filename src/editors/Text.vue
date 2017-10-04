@@ -24,7 +24,7 @@ export default {
   extends: BaseEditor,
   editorTitle: 'Text',
   editorDescription: 'This component will render HTML',
-  editorTemplate: '<h1>Cupcakes</h1><p>Wafer cake cheesecake pastry gummi bears cupcake gummies. Tootsie roll jelly chocolate.</p>',
+  editorTemplate: '<h1>Headline</h1><p>Paragraph</p>',
   editorContext: ['root', 'container'],
 
   components: {
