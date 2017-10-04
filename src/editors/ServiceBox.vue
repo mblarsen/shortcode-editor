@@ -67,7 +67,7 @@ export default {
 }
 .editor__children--service-box {
   color: #999;
-  background-color: var(--gray-border-color);
+  background: linear-gradient(rgba(243,243,243,1),rgba(200,200,200,1));
   min-height: 10vh;
   border-radius: var(--box-border-radius);
   padding: 1rem
