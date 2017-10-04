@@ -9,6 +9,7 @@
         </span>
       </div>
       <span v-if="help" class="help-block">{{help}}</span>
+      <slot></slot>
     </div>
   </div>
 </template>
