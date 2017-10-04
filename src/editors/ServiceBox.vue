@@ -20,31 +20,12 @@
       </template>
       <template slot="body">
         <form class="form-horizontal">
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Icon</label>
-            <div class="col-sm-10">
-              <div class="input-group">
-                <input class="form-control" type="text" v-model="icon">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" @click.prevent="icon = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
-                </span>
-              </div>
-              <div class="form-control-static">
-                <i class="fa fa-4x" :class="[icon]"></i>
-              </div>
+          <simple-input v-model="icon" title="Icon">
+            <div class="form-control-static">
+              <i class="fa fa-4x" :class="[icon]"></i>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="classes" class="col-sm-2 control-label">Classes</label>
-            <div class="col-sm-10">
-              <div class="input-group">
-                <input class="form-control" type="text" v-model="klass" placeholder="CSS classes">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" @click.prevent="klass = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
-                </span>
-              </div>
-            </div>
-          </div>
+          </simple-input>
+          <simple-input v-model="klass" title="Classes"></simple-input>
         </form>
       </template>
       <template slot="footer">

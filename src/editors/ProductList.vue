@@ -22,17 +22,10 @@
       <template slot="title">Product list</template>
       <template slot="body">
         <div class="form-horizontal">
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Title</label>
-            <div class="col-sm-10">
-              <div class="input-group">
-                <input class="form-control" type="text" v-model="title" placeholder="Optional list title">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" @click.prevent="title = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
-                </span>
-              </div>
-            </div>
-          </div>
+
+          <simple-input v-model="title" title="Title" placeholder="Optional list title"></simple-input>
+
+          <!-- list -->
           <div class="form-group">
             <label class="col-sm-2 control-label">List</label>
             <div class="col-sm-5">
@@ -42,6 +35,8 @@
               <span v-if="loading" class="help-block">Loading...</span>
             </div>
           </div>
+
+          <!-- products -->
           <div class="form-group">
             <label class="col-sm-2 control-label">Products</label>
             <div class="col-sm-5">
@@ -54,6 +49,8 @@
               <span class="help-block">The number of products to be displayed in the list.</span>
             </div>
           </div>
+
+          <!-- interval -->
           <div class="form-group">
             <label class="col-sm-2 control-label">Interval</label>
             <div class="col-sm-5">
@@ -66,6 +63,8 @@
               <span class="help-block">The number of miliseconds between slide to next page.</span>
             </div>
           </div>
+
+          <!-- fullwidth and navigation -->
           <div class="form-group">
             <label class="col-sm-2 control-label">Features</label>
             <div class="col-sm-10">
@@ -77,17 +76,9 @@
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <label for="classes" class="col-sm-2 control-label">Classes</label>
-            <div class="col-sm-10">
-              <div class="input-group">
-                <input class="form-control" type="text" v-model="klass" placeholder="CSS classes">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" @click.prevent="klass = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
-                </span>
-              </div>
-            </div>
-          </div>
+
+          <simple-input v-model="klass" title="Classes"></simple-input>
+
         </div>
       </template>
       <template slot="footer">

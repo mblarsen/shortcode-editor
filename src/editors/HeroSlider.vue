@@ -11,6 +11,8 @@
       <template slot="title">Hero slider</template>
       <template slot="body">
         <div class="form-horizontal">
+
+          <!-- list -->
           <div class="form-group">
             <label class="col-sm-2 control-label">List</label>
             <div class="col-sm-5">
@@ -31,6 +33,8 @@
               </div>
             </div>
           </div>
+
+          <!-- interval -->
           <div class="form-group">
             <label class="col-sm-2 control-label">Interval</label>
             <div class="col-sm-5">
@@ -43,6 +47,8 @@
               <span class="help-block">The number of miliseconds between slide to next page.</span>
             </div>
           </div>
+
+          <!-- navigation -->
           <div class="form-group">
             <label class="col-sm-2 control-label">Features</label>
             <div class="col-sm-10">
@@ -51,17 +57,9 @@
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Classes</label>
-            <div class="col-sm-10">
-              <div class="input-group">
-                <input class="form-control" type="text" v-model="klass" placeholder="CSS classes">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" @click.prevent="klass = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
-                </span>
-              </div>
-            </div>
-          </div>
+
+          <simple-input v-model="klass" title="Classes"></simple-input>
+
         </div>
       </template>
       <template slot="footer">

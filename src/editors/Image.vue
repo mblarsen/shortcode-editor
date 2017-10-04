@@ -11,6 +11,8 @@
       </template>
       <template slot="body">
         <form class="form-horizontal">
+
+          <!-- list or src -->
           <div class="form-group">
             <label for="classes" class="col-sm-2 control-label">Source</label>
             <div class="col-sm-10">
@@ -22,11 +24,10 @@
               </div>
             </div>
           </div>
-          <div v-if="imageSource === 'src'" class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <input id="classes" class="form-control" type="text" v-model="src" placeholder="URL for image">
-            </div>
-          </div>
+
+          <simple-input v-if="imageSource === 'src'" v-model="src" placeholder="URL for image"></simple-input>
+
+          <!-- select image -->
           <div v-if="imageSource === 'list'" class="form-group">
             <label class="col-sm-2 control-label">List</label>
             <div class="col-sm-5">
@@ -40,46 +41,18 @@
                 <img v-for="image in images" :src="image.url" :key="image.url" @click="selectImage(image)" class="image__list-image" :class="{'image__list-image--selected': image.name === name}" alt="">
               </div>
               <div v-else class="form-control-static">
-                <div class="alert alert-warning"> The list contains no images </div>
+                <div class="alert alert-warning">The list contains no images.</div>
               </div>
               <div v-if="error" class="form-control-static">
                 <div class="alert alert-danger"><strong>Error</strong>: {{error}}</div>
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <label for="classes" class="col-sm-2 control-label">Link to</label>
-            <div class="col-sm-10">
-              <div class="input-group">
-                <input class="form-control" type="text" v-model="dest" placeholder="https://www.google.com">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" @click.prevent="dest = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="classes" class="col-sm-2 control-label">Alt text</label>
-            <div class="col-sm-10">
-              <div class="input-group">
-                <input class="form-control" type="text" v-model="alt" placeholder="Optional alt text">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" @click.prevent="alt = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="classes" class="col-sm-2 control-label">Classes</label>
-            <div class="col-sm-10">
-              <div class="input-group">
-                <input class="form-control" type="text" v-model="klass" placeholder="CSS classes">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" @click.prevent="klass = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
-                </span>
-              </div>
-            </div>
-          </div>
+
+          <simple-input v-model="dest" title="Link to" placeholder="https://www.google.com"></simple-input>
+          <simple-input v-model="alt" title="Alt text" placeholder="Optional alt text"></simple-input>
+          <simple-input v-model="klass" title="Classes"></simple-input>
+
         </form>
       </template>
       <template slot="footer">

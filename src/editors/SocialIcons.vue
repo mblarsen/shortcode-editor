@@ -21,18 +21,8 @@
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Classes</label>
-            <div class="col-sm-10">
-              <div class="input-group">
-                <input class="form-control" type="text" v-model="klass" placeholder="CSS classes">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" @click.prevent="klass = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+          <simple-input v-model="klass" title="Classes"></simple-input>
+       </div>
       </template>
       <template slot="footer">
         <button @click.prevent="save" class="btn btn-success">Close</button>

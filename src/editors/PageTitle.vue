@@ -16,28 +16,11 @@
       <template slot="title">Page Title</template>
       <template slot="body">
         <div class="form-horizontal">
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Title</label>
-            <div class="col-sm-10">
-              <div class="input-group">
-                <input class="form-control" type="text" v-model="title">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" @click.prevent="title = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Subtitle</label>
-            <div class="col-sm-10">
-              <div class="input-group">
-                <input class="form-control" type="text" v-model="subtitle" placeholder="Optional subtitle">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" @click.prevent="subtitle = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
-                </span>
-              </div>
-            </div>
-          </div>
+
+          <simple-input v-model="title" title="Title"></simple-input>
+          <simple-input v-model="subtitle" title="Subtitle" placeholder="Optional subtitle"></simple-input>
+
+          <!-- fullwidth -->
           <div class="form-group">
             <label class="col-sm-2 control-label">Features</label>
             <div class="col-sm-10">
@@ -46,17 +29,9 @@
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Classes</label>
-            <div class="col-sm-10">
-              <div class="input-group">
-                <input class="form-control" type="text" v-model="klass" placeholder="CSS classes">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" @click.prevent="klass = ''"><span class="icon"><i class="fa fa-times"></i></span></button>
-                </span>
-              </div>
-            </div>
-          </div>
+
+          <simple-input v-model="klass" title="Classes"></simple-input>
+
         </div>
       </template>
       <template slot="footer">
