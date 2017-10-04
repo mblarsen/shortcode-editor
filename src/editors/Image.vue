@@ -10,7 +10,7 @@
         Image
       </template>
       <template slot="body">
-        <form class="form-horizontal">
+        <form ref="editor" class="form-horizontal">
 
           <!-- list or src -->
           <div class="form-group">
@@ -37,6 +37,7 @@
               <span v-if="loading" class="help-block">Loading...</span>
             </div>
             <div class="col-sm-offset-2 col-sm-10">
+              <image-drop v-if="canDrop" :container="$refs.editor" :submitUrl="`/image_lists/add_image/${listId}`" @imageUploaded="addUploadedImage"></image-drop>
               <div v-if="images.length" class="image__list-images">
                 <img v-for="image in images" :src="image.url" :key="image.url" @click="selectImage(image)" class="image__list-image" :class="{'image__list-image--selected': image.name === name}" alt="">
               </div>
@@ -62,6 +63,7 @@
   </div>
 </template>
 <script>
+import ImageDrop from '@/editors/Form/ImageDrop'
 import BaseEditor from '@/editors/Base'
 
 export default {
@@ -73,6 +75,10 @@ export default {
   editorDescription: 'Displays an image',
   editorTemplate: '[image name="logo"/]',
   editorContext: ['root', 'container'],
+
+  components: {
+    ImageDrop,
+  },
 
   data() {
     return {
@@ -86,13 +92,18 @@ export default {
       error: null,
       imageSource: this.token.params.src ? 'src' : 'list',
       lists: [],
+      listId: null,
       images: [],
       src_: this.token.params.src,
       loading: false,
+      canDrop: false,
     }
   },
   created() {
     this.fetchImage()
+  },
+  mounted() {
+    this.canDrop = true
   },
   watch: {
     src() {
@@ -114,7 +125,9 @@ export default {
       this.src_ = null
       this.error = null
       if (!this.list) { return }
-      this.images = this.findList(this.list).images || []
+      const list = this.findList(this.list)
+      this.listId = list.id
+      this.images = list.images || []
     },
   },
   methods: {
@@ -130,6 +143,7 @@ export default {
               this.error = `List "${this.initialList}" does not exist.`
               return
             }
+            this.listId = list.id
             this.images = list.images
             const image = list && list.images.find(i => i.name === this.name) || null
             this.src_ = image && image.url || null
@@ -162,6 +176,11 @@ export default {
       this.alt && props.push(`alt="${this.alt}"`)
       this.list && this.list !== 'global' && props.push(`list="${this.list}"`)
       return props
+    },
+    addUploadedImage(image) {
+      this.name = image.name
+      this.src_ = image.url
+      this.images.push(image)
     },
   },
 }
