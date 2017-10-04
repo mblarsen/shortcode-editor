@@ -42,6 +42,9 @@
               <div v-if="error" class="form-control-static">
                 <div class="alert alert-danger"><strong>Error</strong>: {{error}}</div>
               </div>
+              <div v-if="image" class="form-control-static">
+                <button class="btn btn-primary" @click.prevent="deselectImage">Clear image selection</button>
+              </div>
             </div>
           </div>
 
@@ -155,6 +158,10 @@ export default {
     selectImage(image) {
       this.image = image.name
       this.src = image.url
+    },
+    deselectImage() {
+      this.image = null
+      this.src = null
     },
   }
 }
