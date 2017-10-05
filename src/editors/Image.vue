@@ -37,7 +37,7 @@
               <span v-if="loading" class="help-block">Loading...</span>
             </div>
             <div class="col-sm-offset-2 col-sm-10">
-              <image-drop v-if="canDrop" :container="$refs.editor" :submitUrl="`/image_lists/add_image/${listId}`" @imageUploaded="addUploadedImage"></image-drop>
+              <image-drop v-if="canDrop" :container="$refs.editor" :submitUrl="`/image_lists/${listId}/add_image`" @imageUploaded="addUploadedImage"></image-drop>
               <div v-if="images.length" class="image__list-images">
                 <img v-for="image in images" :src="image.url" :key="image.url" @click="selectImage(image)" class="image__list-image" :class="{'image__list-image--selected': image.name === name}" alt="">
               </div>
