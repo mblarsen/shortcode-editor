@@ -63,6 +63,16 @@
           </div>
 
           <simple-input v-model="dest" title="Link to" placeholder="https://www.google.com"></simple-input>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Features</label>
+            <div class="col-sm-10">
+              <div class="checkbox-inline">
+                <label><input type="checkbox" v-model="autocrop"> autocrop</label>
+              </div>
+            </div>
+          </div>
+
           <simple-input v-model="klass" title="Classes"></simple-input>
 
         </form>
@@ -91,6 +101,7 @@ export default {
       cta: this.token.params.cta,
       color: this.token.params.color,
       dest: this.token.params.dest,
+      autocrop: this.token.params !== false,
 
       list: this.token.params.list || 'global',
       error: null,
@@ -123,6 +134,7 @@ export default {
         ...(this.cta ? [`cta="${this.cta}"`] : []),
         ...(this.color ? [`color="${this.color}"`] : []),
         ...(this.dest ? [`dest="${this.dest}"`] : []),
+        ...(!this.autocrop ? [`autocrop=${this.autocrop}`] : []),
       ]
     },
     fetchImage() {
