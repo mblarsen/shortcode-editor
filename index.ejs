@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset=utf-8>
-    <meta http-equiv=X-UA-Compatible content="IE=edge">
-    <meta name=viewport content="width=device-width,initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>editor</title>
-    <link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css integrity=sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u crossorigin=anonymous>
-    <link href=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css rel=stylesheet integrity=sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN crossorigin=anonymous>
-    <script src=//cdn.ckeditor.com/4.6.2/full/ckeditor.js></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   </head>
   <body>
-    <div id=app class=container></div>
+    <div id="app" class="container"></div>
 
-    <div class=row>
+    <div class="row">
       <div class="col-sm-offset-1 col-sm-10">
-        <div class=form-horizontal>
-          <div class=form-group>
+        <div class="form-horizontal">
+          <div class="form-group">
             <label class="col-sm-3 control-label">front body</label>
-            <div class=col-sm-9>
-              <textarea id=slot-body name=slot-body class=hidden>
+            <div class="col-sm-9">
+              <textarea id="slot-body" name="slot-body" class="hidden">
 
-                [image/]
+              [container]
+                [hero-slider list="frontslider"/]
+                [product-list play="false" name="bestsellers" title="Bestsellers" num=8/]
+                [product-list play="false" name="random" title="New Items" sort="newest" num=8/]
+              [/container]
 
               </textarea>
-              <div class=slot-editor src=slot-body></div>
+              <div class="slot-editor" src="slot-body"></div>
             </div>
           </div>
         </div>
@@ -32,21 +35,21 @@
 
     <hr>
 
-    <div class=row>
+    <div class="row">
       <div class="col-sm-offset-1 col-sm-10">
-        <div class=form-horizontal>
-          <div class=form-group>
+        <div class="form-horizontal">
+          <div class="form-group">
             <label class="col-sm-3 control-label">global footer</label>
-            <div class=col-sm-9>
-              <textarea id=slot-footer name=slot-footer class=hidden>
+            <div class="col-sm-9">
+              <textarea id="slot-footer" name="slot-footer" class="hidden">
 
               [container]
                 [div class="foot_wrapper"]
                   [row]
                     [sitemap class="foot__column col-lg-6 col-md-12" classPrefix="foot" /]
                     [div class="foot__column col-lg-3 col-md-6 col-sm-6 col-xs-12"]
-                        <h5 class=foot__title>{{'page.aboutUs' | trans}}</h5>
-                        <p class=foot__content>Shipnity is a very slick and clean e-commerce solution. Creating an awesome store is easier than you can imagine.</p>
+                        <h5 class="foot__title">{{'page.aboutUs' | trans}}</h5>
+                        <p class="foot__content">Shipnity is a very slick and clean e-commerce solution. Creating an awesome store is easier than you can imagine.</p>
                     [/div]
                     [div class="foot__column foot__column--get-in-touch col-lg-3 col-md-6 col-sm-6 col-xs-12"]
                         [address-box/]
@@ -57,7 +60,7 @@
               [/container]
 
               </textarea>
-              <div class=slot-editor src=slot-footer></div>
+              <div class="slot-editor" src="slot-footer"></div>
             </div>
           </div>
         </div>
@@ -66,13 +69,13 @@
 
     <hr>
 
-    <div class=row>
+    <div class="row">
       <div class="col-sm-offset-1 col-sm-10">
-        <div class=form-horizontal>
-          <div class=form-group>
+        <div class="form-horizontal">
+          <div class="form-group">
             <label class="col-sm-3 control-label">about body</label>
-            <div class=col-sm-9>
-              <textarea id=slot-about name=slot-about class=hidden>
+            <div class="col-sm-9">
+              <textarea id="slot-about" name="slot-about" class="hidden">
 
               [container]
                 [page-title title="About Us"/]
@@ -104,13 +107,13 @@
               [/container]
 
               </textarea>
-              <div class=slot-editor src=slot-about></div>
+              <div class="slot-editor" src="slot-about"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <script src=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js integrity=sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa crossorigin=anonymous></script>
-  <script type=text/javascript src=/static/js/slot-editor-1.5.5.js></script></body>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
 </html>
