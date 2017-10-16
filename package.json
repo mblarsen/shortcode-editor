@@ -16,6 +16,7 @@
   "dependencies": {
     "sentinel-js": "^0.0.1",
     "shortcode-tokenizer": "^0.4.0",
+    "uuid": "^3.1.0",
     "vue-ckeditor2": "^1.15.0"
   },
   "devDependencies": {

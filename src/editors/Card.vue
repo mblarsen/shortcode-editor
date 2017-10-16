@@ -11,7 +11,7 @@
           @remove="removeChild"
           :is="editor.use"
           :token="editor.token"
-          :key="editor.use + i"></component>
+          :key="editor.token.uuid"></component>
         <button v-if="cta" class="card__preview__cta btn btn-success">{{cta}}</button>
       </div>
     </div>

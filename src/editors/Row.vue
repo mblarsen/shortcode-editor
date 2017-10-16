@@ -10,7 +10,7 @@
         @remove="removeChild"
         :is="editor.use"
         :token="editor.token"
-        :key="editor.use + i"></component>
+        :key="editor.token.uuid"></component>
     </div>
     <add-button context="row" text="Column" component="column" :caller="callerId"/>
     <edit-modal :open="isEditing">

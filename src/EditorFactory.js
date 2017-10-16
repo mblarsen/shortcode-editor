@@ -1,4 +1,5 @@
 import {default as Tokenizer} from 'shortcode-tokenizer'
+import uuid from 'uuid/v4'
 
 class Editor {
   constructor(use, token) {
@@ -54,6 +55,7 @@ export function createEditors(content) {
     .filter(token => token.type !== Tokenizer.ERROR)
     .map((token, index) => {
       token.index = index
+      token.uuid = uuid()
       if (token.type === Tokenizer.TEXT) {
         return new Editor('text-editor', token)
       }
