@@ -45,7 +45,8 @@ export default {
 
   editorTitle: 'Container',
   editorDescription: 'This component provides proper padding to content. Can be normal width or full width.',
-  editorTemplate: '[container][/container]',
+  editorTag: 'container',
+  editorProps: ['fullwidth'],
   editorContext: ['root', 'container'],
 
   data() {

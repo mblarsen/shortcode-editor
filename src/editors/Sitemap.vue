@@ -28,7 +28,7 @@ export default {
 
   editorTitle: 'Sitemap',
   editorDescription: 'List shop pages organized by topics',
-  editorTemplate: '[sitemap /]',
+  editorTag: 'sitemap',
   editorContext: ['root', 'container'],
 
   data() {

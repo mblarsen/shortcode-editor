@@ -43,7 +43,9 @@ export default {
 
   editorTitle: 'Service Box',
   editorDescription: 'Typical service box with icon that describes your USP.',
-  editorTemplate: '[service-box icon="fa-bath"]<h3>Clean</h3><p>Sit enim expedita repudiandae quisquam corporis Obcaecati inventore earum.</p>[/service-box]',
+  editorTag: 'service-box',
+  editorProps: ['icon'],
+  editorSample: '[service-box icon="fa-bath"]<h3>Clean</h3><p>Sit enim expedita repudiandae quisquam corporis Obcaecati inventore earum.</p>[/service-box]',
   editorContext: ['container'],
 
   data() {

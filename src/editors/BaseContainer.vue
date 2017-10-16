@@ -18,19 +18,62 @@ export default {
   },
   methods: {
     /* container */
-    toString(childContent = '') {
-      return `[${this.tag}${this.propertiesToString()}]${childContent}[/${this.tag}]`
+    toString(content = '') {
+      return this.buildTemplate(this.tag, this.propertiesToString(), content)
     },
-    /* append new content in container */
-    append(content) {
-      const template = this.childrenToString() + content
+    handleCatalogAction(item, action) {
+      const actionName = typeof action === 'object'
+        ? action.action
+        : action
+      if (actionName === 'append') {
+        this.append(item)
+      } else if (actionName === 'replace') {
+        this.replaceSelf(item)
+      }
+    },
+    /* catalog action: append new content in container */
+    append(item) {
+      const children = this.childrenToString() + (item.sample || this.buildTemplate(item.tag))
+      this.content = this.toString(children)
+      this.bus.$emit('update')
+    },
+    /* catalog action: replaces self and children if possible */
+    replaceSelf(item) {
+      this.content = this.buildTemplate(item.tag, this.intersectProps(item), this.childrenToString())
+      this.bus.$emit('update')
+    },
+    moveChildPrev(child) {
+      this.moveChild(child, -1)
+    },
+    moveChildNext(child) {
+      this.moveChild(child, 1)
+    },
+    moveChild(child, direction) {
+      const children = this.children()
+      const index = children.findIndex(c => c.token.uuid === child.token.uuid)
+
+      if (direction === -1 && index === 0 || direction === 1 & index + 1 === children.length) {
+        return // noop
+      }
+      const otherChild = children[index + direction]
+
+      children[index + direction] = child
+      children[index] = otherChild
+
+      const template = children
+        .map(c => c.toTemplate())
+        .join('')
+
       this.content = this.toString(template)
       this.bus.$emit('update')
     },
-    childrenToString(except = null) {
+    children(except = null) {
       return this.$children
         .filter(c => c !== except)
         .filter(c => c.$options.name.endsWith('-editor'))
+    },
+    childrenToString(except = null) {
+      return this.children(except)
         .map(c => c.toTemplate())
         .join('')
     },

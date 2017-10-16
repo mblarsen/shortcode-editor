@@ -37,8 +37,10 @@ export default {
 
   editorTitle: 'Row',
   editorDescription: 'This component will break content into rows.',
-  editorTemplate: '[row][column][/column][/row]',
+  editorTag: 'row',
+  editorSample: '[row][column][/column][/row]',
   editorContext: ['root', 'container'],
+  editorChildContext: 'row',
 
   data() {
     return {

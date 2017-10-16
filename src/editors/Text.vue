@@ -24,7 +24,7 @@ export default {
   extends: BaseEditor,
   editorTitle: 'Text',
   editorDescription: 'This component will render HTML',
-  editorTemplate: '<h1>Headline</h1><p>Paragraph</p>',
+  editorSample: '<h1>Headline</h1><p>Paragraph</p>',
   editorContext: ['root', 'container'],
 
   components: {

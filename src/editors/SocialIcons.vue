@@ -40,7 +40,7 @@ export default {
 
   editorTitle: 'Social Icons',
   editorDescription: 'Shows the shops social networks.',
-  editorTemplate: '[social-icons withNames=true /]',
+  editorTag: 'social-icons',
   editorContext: ['root', 'container'],
 
   data() {

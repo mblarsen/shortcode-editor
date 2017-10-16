@@ -9,7 +9,7 @@ import {callerId} from '@/EditorFactory'
 export default {
   name: 'base-editor',
   inject: ['bus'],
-  props: ['token'],
+  props: ['token', 'isChild'],
   components: {AddButton, EditModal},
   computed: {
     callerId,
@@ -27,24 +27,58 @@ export default {
     this.$options.components.SimpleInput = require('@/editors/Form/Simple').default
   },
   created() {
-    this.bus.$on(this.callerId, ({item}) => (this.append(item)))
+    this.bus.$on(this.callerId, ({item, action}) => this.handleCatalogAction(item, action))
   },
   methods: {
+    handleCatalogAction(item, action) {
+      const actionName = typeof action === 'object'
+        ? action.action
+        : action
+      if (actionName === 'replace') {
+        this.replaceSelf(item)
+      }
+    },
+    /* catalog action: replaces self and children if possible */
+    replaceSelf(item) {
+      this.content = this.buildTemplate(item.tag, this.intersectProps(item))
+      this.bus.$emit('update')
+    },
+    intersectProps(item) {
+      const props = this.properties()
+      const itemProps = item.props || []
+      itemProps.push('class')
+      this.klass && props.push(`class="${this.klass}"`)
+      return props.filter(prop => {
+        const propName = prop.substring(0, prop.indexOf('='))
+        console.log('propName', propName)
+        return itemProps.includes(propName)
+      })
+    },
+    buildTemplate(tag, props = [], content = null) {
+      props = props.length > 0 ? ' ' + props.join(' ') : ''
+      return content === null
+        ? `[${tag}${props}/]`
+        : `[${tag}${props}]${content}[/${tag}]`
+    },
     /* self-closing */
     toString() {
-      return `[${this.tag}${this.propertiesToString()}/]`
+      return this.buildTemplate(this.tag, this.propertiesToString())
     },
     propertiesToString() {
       const props = this.properties()
       this.klass && props.push(`class="${this.klass}"`)
-      return props.length > 0
-        ? ' ' + props.join(' ')
-        : ''
+      return props
     },
     properties() {
       return []
     },
     toTemplate() {
+      /* return pre-compiled content */
+      if (this.content) {
+        const content = this.content
+        this.content = null
+        return content
+      }
       return this.toString()
     },
     edit() {
@@ -57,6 +91,20 @@ export default {
     remove() {
       this.$emit('remove', this)
     },
-  }
+    movePrev() {
+      this.$emit('movePrev', this)
+    },
+    moveNext() {
+      this.$emit('moveNext', this)
+    },
+    changeType() {
+      const context = this.$parent.$options.editorChildContext || 'container'
+      this.bus.$emit('showCatalog', {
+        caller: this.callerId,
+        context: context,
+        action: 'replace',
+      })
+    },
+  },
 }
 </script>

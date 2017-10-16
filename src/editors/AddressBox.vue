@@ -7,7 +7,7 @@ export default {
 
   editorTitle: 'Address Box',
   editorDescription: 'Inserts contact information.',
-  editorTemplate: '[address-box/]',
+  editorTag: 'address-box',
   editorContext: ['root', 'container'],
 }
 </script>

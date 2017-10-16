@@ -78,7 +78,8 @@ export default {
 
   editorTitle: 'Hero slider',
   editorDescription: 'Typical hero slider for frontpage.',
-  editorTemplate: '[hero-slider list="frontslider" /]',
+  editorTag: 'hero-slider',
+  editorSample: '[hero-slider list="frontslider" /]',
   editorContext: ['root', 'container'],
 
   data() {

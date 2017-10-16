@@ -7,7 +7,7 @@ export default {
 
   editorTitle: 'Div',
   editorDescription: 'A simple div. Also see section, container, row, column.',
-  editorTemplate: '[div][/div]',
+  editorTag: 'div',
   editorContext: ['root', 'container'],
 }
 </script>

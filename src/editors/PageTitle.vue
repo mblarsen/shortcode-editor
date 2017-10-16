@@ -50,7 +50,9 @@ export default {
 
   editorTitle: 'Page title',
   editorDescription: 'Show a title and optional title on a page. Can also be used for sections.',
-  editorTemplate: '[page-title list="Title" /]',
+  editorTag: 'page-title',
+  editorProps: ['title', 'subtitle', 'fullwidth'],
+  editorSample: '[page-title list="Title" /]',
   editorContext: ['root', 'container'],
 
   data() {

@@ -97,7 +97,9 @@ export default {
 
   editorTitle: 'Product list',
   editorDescription: 'Display a list of products',
-  editorTemplate: '[product-list name="random" num=4/]',
+  editorTag: 'product-list',
+  editorProps: ['title', 'name', 'num', 'fullwidth', 'play', 'nav'],
+  editorSample: '[product-list name="random" num=4/]',
   editorContext: ['root', 'container'],
 
   data() {

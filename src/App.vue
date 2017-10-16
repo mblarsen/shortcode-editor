@@ -70,7 +70,7 @@ export default {
       /* prepend root items */
       this._provided.bus.$on(this.callerId, (payload) => {
         const old = this.content
-        this.content += payload.item
+        this.content += payload.item.sample || this.buildTemplate(payload.item.tag)
         this.$nextTick(() => this.save(old))
       })
       /* on update save */
@@ -113,6 +113,12 @@ export default {
     redo() {
       this.undoLog.push(this.content)
       this.srcElement.innerText = this.content = this.redoLog.pop()
+    },
+    buildTemplate(tag, props = [], content = null) {
+      props = props.length > 0 ? ' ' + props.join(' ') : ''
+      return content === null
+        ? `[${tag}${props}/]`
+        : `[${tag}${props}]${content}[/${tag}]`
     },
   }
 }

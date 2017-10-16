@@ -7,7 +7,7 @@ export default {
 
   editorTitle: 'Column',
   editorDescription: 'This component can order content in a column. Use boostrap classes to define size.',
-  editorTemplate: '[column][/column]',
+  editorTag: 'column',
   editorContext: ['row'],
 }
 </script>

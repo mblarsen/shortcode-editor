@@ -73,7 +73,9 @@ export default {
 
   editorTitle: 'Image',
   editorDescription: 'Displays an image',
-  editorTemplate: '[image name="logo"/]',
+  editorTag: 'image',
+  editorProps: ['list', 'src', 'dest', 'name', 'alt'],
+  editorSample: '[image name="logo"/]',
   editorContext: ['root', 'container'],
 
   components: {

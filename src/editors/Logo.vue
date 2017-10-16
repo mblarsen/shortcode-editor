@@ -7,7 +7,7 @@ export default {
 
   editorTitle: 'Logo',
   editorDescription: 'Inserts the shop logo. Has link and defaults to text.',
-  editorTemplate: '[logo/]',
+  editorTag: 'logo',
   editorContext: ['root', 'container'],
 }
 </script>

@@ -14,7 +14,7 @@
               <div v-for="item in filteredItems" class="editor-catalog__item">
                 <div class="editor-catalog__item__title">{{item.title}}</div>
                 <div class="editor-catalog__item__description">{{item.description}}</div>
-                <button @click.prevent="select(item.template)" class="editor-catalog__item__select btn btn-xs btn-block btn-success">select</button>
+                <button @click.prevent="select(item)" class="editor-catalog__item__select btn btn-xs btn-block btn-success">select</button>
               </div>
             </div>
           </div>
@@ -37,6 +37,7 @@ export default {
     return {
       open: false,
       context: 'root',
+      action: 'append',
       items: [],
       search: '',
     }
@@ -61,16 +62,17 @@ export default {
      * @param {String} obj.caller An id of the caller so we know who to sent catalog choice to
      * @param {String} [obj.context='all'] The the context for the components that we wish to insert
      */
-    this.bus.$on('showCatalog', ({caller, context = 'root', component = null}) => {
+    this.bus.$on('showCatalog', ({caller, context = 'root', component = null, action = 'append'}) => {
       this.context = context
       this.caller = caller
+      this.action = action
       if (component) {
         const componentFullName = `${component}-editor`
         const item = this.items.find(i => i.name === componentFullName)
         if (!item) {
           throw new Error('Invalid component requested')
         }
-        return this.select(item.template)
+        return this.select(item)
       }
 
       this.open = true
@@ -80,7 +82,7 @@ export default {
     select(item) {
       this.open = false
       this.search = ''
-      this.bus.$emit(this.caller, {item})
+      this.bus.$emit(this.caller, {item, action: this.action})
     },
     fillCatalog() {
       this.items = Object.values(this.$options.components)
@@ -89,8 +91,11 @@ export default {
           name: item.name,
           title: item.editorTitle,
           description: item.editorDescription,
-          template: item.editorTemplate,
+          sample: item.editorSample,
           context: item.editorContext,
+          childContext: item.editorChildContext,
+          props: item.editorProps,
+          tag: item.editorTag,
         }))
     },
   },

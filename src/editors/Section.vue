@@ -7,7 +7,7 @@ export default {
 
   editorTitle: 'Section',
   editorDescription: 'Use to partion content into sections of a page.',
-  editorTemplate: '[section][/section]',
+  editorTag: 'section',
   editorContext: ['root', 'container'],
 
 }

@@ -2,6 +2,7 @@
   <div class="editor editor--card">
     <div class="editor__header">
       <div class="editor__label"><a @click="edit">card<span v-if="klass">, class: {{klass}}</span></a></div>
+      <a class="editor__change btn btn-xs btn-link`" @click.prevent="changeType">Change type</a>
       <a class="editor__remove btn btn-xs btn-link`" @click.prevent="remove"><span class="icon"><i class="fa fa-times"></i></span></a>
     </div>
     <div class="editor__children editor__children--card editor__children--column">
@@ -92,7 +93,9 @@ export default {
 
   editorTitle: 'Card',
   editorDescription: 'Card with Call-To-Action and optional image background',
-  editorTemplate: '[card]<h1>Headline</h1><p>Paragraph</p>[/card]',
+  editorTag: 'card',
+  editorProps: ['image', 'cta', 'color', 'dest', 'autocrop'],
+  editorSample: '[card]<h1>Headline</h1><p>Paragraph</p>[/card]',
   editorContext: ['root', 'container'],
 
   data() {
