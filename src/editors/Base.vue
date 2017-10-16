@@ -24,7 +24,7 @@ export default {
     }
   },
   beforeCreate() {
-    this.$options.components.SimpleInput = require('@/editors/Form/Simple')
+    this.$options.components.SimpleInput = require('@/editors/Form/Simple').default
   },
   created() {
     this.bus.$on(this.callerId, ({item}) => (this.append(item)))

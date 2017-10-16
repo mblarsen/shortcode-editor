@@ -21,22 +21,22 @@ export function editors() {
 }
 
 export function injectEditors(vue) {
-  vue.$options.components.TextEditor = require('@/editors/Text')
-  vue.$options.components.ImageEditor = require('@/editors/Image')
-  vue.$options.components.SectionEditor = require('@/editors/Section')
-  vue.$options.components.ContainerEditor = require('@/editors/Container')
-  vue.$options.components.RowEditor = require('@/editors/Row')
-  vue.$options.components.ColumnEditor = require('@/editors/Column')
-  vue.$options.components.DivEditor = require('@/editors/Div')
-  vue.$options.components.ProductListEditor = require('@/editors/ProductList')
-  vue.$options.components.HeroSliderEditor = require('@/editors/HeroSlider')
-  vue.$options.components.AddressBoxEditor = require('@/editors/AddressBox')
-  vue.$options.components.LogoEditor = require('@/editors/Logo')
-  vue.$options.components.PageTitleEditor = require('@/editors/PageTitle')
-  vue.$options.components.CardEditor = require('@/editors/Card')
-  vue.$options.components.ServiceBoxEditor = require('@/editors/ServiceBox')
-  vue.$options.components.SocialIconsEditor = require('@/editors/SocialIcons')
-  vue.$options.components.SitemapEditor = require('@/editors/Sitemap')
+  vue.$options.components.TextEditor = require('@/editors/Text').default
+  vue.$options.components.ImageEditor = require('@/editors/Image').default
+  vue.$options.components.SectionEditor = require('@/editors/Section').default
+  vue.$options.components.ContainerEditor = require('@/editors/Container').default
+  vue.$options.components.RowEditor = require('@/editors/Row').default
+  vue.$options.components.ColumnEditor = require('@/editors/Column').default
+  vue.$options.components.DivEditor = require('@/editors/Div').default
+  vue.$options.components.ProductListEditor = require('@/editors/ProductList').default
+  vue.$options.components.HeroSliderEditor = require('@/editors/HeroSlider').default
+  vue.$options.components.AddressBoxEditor = require('@/editors/AddressBox').default
+  vue.$options.components.LogoEditor = require('@/editors/Logo').default
+  vue.$options.components.PageTitleEditor = require('@/editors/PageTitle').default
+  vue.$options.components.CardEditor = require('@/editors/Card').default
+  vue.$options.components.ServiceBoxEditor = require('@/editors/ServiceBox').default
+  vue.$options.components.SocialIconsEditor = require('@/editors/SocialIcons').default
+  vue.$options.components.SitemapEditor = require('@/editors/Sitemap').default
 }
 
 export function createEditors(content) {
