@@ -1,9 +1,6 @@
 <template>
   <div class="editor editor--hero-slider">
-    <div class="editor__header">
-      <div class="editor__label"><a @click="edit">hero slider "{{list}}", {{nav ? 'with controls' : 'no controls'}}{{play ? `, ${play}ms interval` : ''}}</a></div>
-      <a class="editor__remove btn btn-xs btn-link`" @click.prevent="remove"><span class="icon"><i class="fa fa-times"></i></span></a>
-    </div>
+    <editor-header>hero slider "{{list}}", {{nav ? 'with controls' : 'no controls'}}{{play ? `, ${play}ms interval` : ''}}</editor-header>
     <div class="hero-slider__previews">
       <img v-for="image in images" :src="image.url" :key="image.url"  class="hero-slider__preview" />
     </div>

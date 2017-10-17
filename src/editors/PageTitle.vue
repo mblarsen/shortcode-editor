@@ -1,9 +1,6 @@
 <template>
   <div class="editor editor--page-title">
-    <div class="editor__header">
-      <div class="editor__label"><a @click="edit">page-title<span v-if="klass">, class: {{klass}}</span></a></div>
-      <a class="editor__remove btn btn-xs btn-link`" @click.prevent="remove"><span class="icon"><i class="fa fa-times"></i></span></a>
-    </div>
+    <editor-header>{{tag}}<span v-if="klass">, class: {{klass}}</span></editor-header>
     <div class="page-title__demo">
       <div v-if="!fullwidth" class="page-title__padding"></div>
       <div class="page-title__titles">

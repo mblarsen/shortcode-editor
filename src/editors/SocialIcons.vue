@@ -1,9 +1,6 @@
 <template>
   <div class="editor editor--social-icons">
-    <div class="editor__header">
-      <div class="editor__label"><a @click="edit">social-icons<span v-if="klass">, class: {{klass}}</span></a></div>
-      <a class="editor__remove btn btn-xs btn-link`" @click.prevent="remove"><span class="icon"><i class="fa fa-times"></i></span></a>
-    </div>
+    <editor-header>{{tag}}<span v-if="klass">, class: {{klass}}</span></editor-header>
     <div class="social-icons__preview">
       <div v-for="icon in icons" class="social-icons__icon">
        <i :class="icon.class"></i><span class="social-icons__network" v-if="withNames"> {{icon.name}}</span>

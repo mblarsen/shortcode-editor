@@ -1,9 +1,6 @@
 <template>
   <div class="editor editor--sitemap">
-    <div class="editor__header">
-      <div class="editor__label"><a @click="edit">sitemap<span v-if="klass">, class: {{klass}}</span><span v-if="klass">, prefix: {{classPrefix}}</span></a></div>
-      <a class="editor__remove btn btn-xs btn-link`" @click.prevent="remove"><span class="icon"><i class="fa fa-times"></i></span></a>
-    </div>
+    <editor-header>{{tag}}<span v-if="klass">, class: {{klass}}</span></editor-header>
     <edit-modal :open="isEditing">
       <template slot="title">Sitemap</template>
       <template slot="body">

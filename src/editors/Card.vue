@@ -1,11 +1,6 @@
 <template>
   <div class="editor editor--card">
-    <div class="editor__header">
-      <div class="editor__label"><a @click="edit">card<span v-if="klass">, class: {{klass}}</span></a></div>
-      <a class="editor__wrap btn btn-xs btn-link`" @click.prevent="wrapIn">Wrap in</a>
-      <a class="editor__change btn btn-xs btn-link`" @click.prevent="changeType">Change type</a>
-      <a class="editor__remove btn btn-xs btn-link`" @click.prevent="remove"><span class="icon"><i class="fa fa-times"></i></span></a>
-    </div>
+    <editor-header>{{tag}}<span v-if="klass">, class: {{klass}}</span></editor-header>
     <div class="editor__children editor__children--card editor__children--column">
       <div class="card__preview" :style="cardStyle">
         <component v-for="(editor, i) in editors"

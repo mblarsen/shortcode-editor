@@ -1,9 +1,6 @@
 <template>
 <div class="editor editor-image">
-    <div class="editor__header">
-      <div class="editor__label"><a @click.prevent="edit">image<span v-if="klass">, class: {{klass}}</span></a></div>
-      <a class="editor__remove btn btn-xs btn-link`" @click.prevent="remove"><span class="icon"><i class="fa fa-times"></i></span></a>
-    </div>
+    <editor-header>{{tag}}<span v-if="klass">, class: {{klass}}</span></editor-header>
     <img v-if="src_" :src="src_" :alt="alt" class="image__preview" @click="edit"/>
     <edit-modal :open="isEditing">
       <template slot="title">

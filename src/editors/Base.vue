@@ -3,6 +3,7 @@
 </template>
 <script>
 import AddButton from '@/AddButton'
+import EditorHeader from '@/EditorHeader'
 import EditModal from '@/EditModal'
 import {callerId} from '@/EditorFactory'
 
@@ -10,7 +11,7 @@ export default {
   name: 'base-editor',
   inject: ['bus'],
   props: ['token', 'isChild'],
-  components: {AddButton, EditModal},
+  components: {AddButton, EditModal, EditorHeader},
   computed: {
     callerId,
     tag() {
@@ -53,7 +54,6 @@ export default {
       this.klass && props.push(`class="${this.klass}"`)
       return props.filter(prop => {
         const propName = prop.substring(0, prop.indexOf('='))
-        console.log('propName', propName)
         return itemProps.includes(propName)
       })
     },
