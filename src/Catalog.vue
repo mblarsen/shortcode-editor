@@ -8,7 +8,7 @@
           </div>
           <div class="modal-body editor-catalog__modal-body">
             <div>
-              <input v-model="search" class="form-control" placeholder="Search..." type="text">
+              <input v-model="search" class="form-control" placeholder="Search..." type="text" autofocus>
             </div>
             <div class="editor-catalog__items">
               <div v-for="item in filteredItems" class="editor-catalog__item">
