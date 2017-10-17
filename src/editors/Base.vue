@@ -116,6 +116,11 @@ export default {
         action: 'replace',
       })
     },
+    copyTemplate() {
+      const template = this.toTemplate()
+      window.localStorage.copiedTemplate = template
+      this.bus.$emit('copy', {component: this, template})
+    },
   },
 }
 </script>

@@ -74,7 +74,12 @@ export default {
       const template = this.childrenToString(arguments[0])
       this.content = this.toString(template)
       this.bus.$emit('update')
-    }
+    },
+    pasteTemplate() {
+      const children = this.childrenToString() + window.localStorage.copiedTemplate
+      this.content = this.toString(children)
+      this.bus.$emit('update')
+    },
   }
 }
 </script>

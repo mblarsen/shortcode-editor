@@ -61,6 +61,7 @@ export default {
   created() {
     injectEditors(this)
     this.addListeners()
+    window.localStorage.removeItem('copiedTemplate')
   },
   mounted() {
     this.readSource()
