@@ -17,30 +17,14 @@ export default {
     }
   },
   methods: {
-    /* container */
-    toString(content = '') {
-      return this.buildTemplate(this.tag, this.propertiesToString(), content)
-    },
-    handleCatalogAction(item, action) {
-      const actionName = typeof action === 'object'
-        ? action.action
-        : action
-      if (actionName === 'append') {
-        this.append(item)
-      } else if (actionName === 'replace') {
-        this.replaceSelf(item)
-      }
-    },
     /* catalog action: append new content in container */
-    append(item) {
+    handleAppend(item) {
       const children = this.childrenToString() + (item.sample || this.buildTemplate(item.tag))
       this.content = this.toString(children)
-      this.bus.$emit('update')
     },
     /* catalog action: replaces self and children if possible */
-    replaceSelf(item) {
+    handleReplace(item) {
       this.content = this.buildTemplate(item.tag, this.intersectProps(item), this.childrenToString())
-      this.bus.$emit('update')
     },
     moveChildPrev(child) {
       this.moveChild(child, -1)

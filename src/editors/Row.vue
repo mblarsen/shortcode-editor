@@ -38,6 +38,7 @@ export default {
   editorTitle: 'Row',
   editorDescription: 'This component will break content into rows.',
   editorTag: 'row',
+  editorIsContainer: true,
   editorSample: '[row][column][/column][/row]',
   editorContext: ['root', 'container'],
   editorChildContext: 'row',

@@ -38,13 +38,19 @@ export default {
       open: false,
       context: 'root',
       action: 'append',
+      type: null,
       items: [],
       search: '',
     }
   },
   computed: {
     filteredItems() {
-      const items = this.items.filter(i => i.context.includes(this.context))
+      const items = this.items
+        /* items that can be added in context */
+        .filter(i => i.context.includes(this.context))
+        /* items of type */
+        .filter(i => !this.type || i.type === this.type)
+
       if (this.search.length === 0) { return items }
       const term = this.search.toLowerCase()
       return items.filter(item => {
@@ -62,10 +68,11 @@ export default {
      * @param {String} obj.caller An id of the caller so we know who to sent catalog choice to
      * @param {String} [obj.context='all'] The the context for the components that we wish to insert
      */
-    this.bus.$on('showCatalog', ({caller, context = 'root', component = null, action = 'append'}) => {
+    this.bus.$on('showCatalog', ({caller, context = 'root', type = null, component = null, action = 'append'}) => {
       this.context = context
       this.caller = caller
       this.action = action
+      this.type = type
       if (component) {
         const componentFullName = `${component}-editor`
         const item = this.items.find(i => i.name === componentFullName)
@@ -96,6 +103,7 @@ export default {
           childContext: item.editorChildContext,
           props: item.editorProps,
           tag: item.editorTag,
+          type: item.editorIsContainer ? 'container' : null
         }))
     },
   },

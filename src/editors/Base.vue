@@ -31,17 +31,20 @@ export default {
   },
   methods: {
     handleCatalogAction(item, action) {
-      const actionName = typeof action === 'object'
+      let actionName = typeof action === 'object'
         ? action.action
         : action
-      if (actionName === 'replace') {
-        this.replaceSelf(item)
-      }
+      actionName = actionName[0].toUpperCase() + actionName.substring(1)
+      this[`handle${actionName}`](item, action)
+      this.bus.$emit('update')
+    },
+    /* catalog action: wraps compent in container type component */
+    handleWrap(item) {
+      this.content = this.buildTemplate(item.tag, this.intersectProps(item), this.toTemplate())
     },
     /* catalog action: replaces self and children if possible */
-    replaceSelf(item) {
+    handleReplace(item) {
       this.content = this.buildTemplate(item.tag, this.intersectProps(item))
-      this.bus.$emit('update')
     },
     intersectProps(item) {
       const props = this.properties()
@@ -60,9 +63,8 @@ export default {
         ? `[${tag}${props}/]`
         : `[${tag}${props}]${content}[/${tag}]`
     },
-    /* self-closing */
-    toString() {
-      return this.buildTemplate(this.tag, this.propertiesToString())
+    toString(content = null) {
+      return this.buildTemplate(this.tag, this.propertiesToString(), content)
     },
     propertiesToString() {
       const props = this.properties()
@@ -96,6 +98,15 @@ export default {
     },
     moveNext() {
       this.$emit('moveNext', this)
+    },
+    wrapIn() {
+      const context = this.$parent.$options.editorChildContext || 'container'
+      this.bus.$emit('showCatalog', {
+        caller: this.callerId,
+        context: context,
+        type: 'container',
+        action: 'wrap',
+      })
     },
     changeType() {
       const context = this.$parent.$options.editorChildContext || 'container'
