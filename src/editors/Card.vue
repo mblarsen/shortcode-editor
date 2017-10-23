@@ -6,6 +6,8 @@
         <component v-for="(editor, i) in editors"
           class="editor"
           @remove="removeChild"
+          @movePrev="moveChildPrev"
+          @moveNext="moveChildNext"
           :is="editor.use"
           :token="editor.token"
           :key="editor.token.uuid"></component>

@@ -16,6 +16,10 @@ export default {
       content: null,
     }
   },
+  created() {
+    this.$on('movePrev', this.moveChildPrev)
+    this.$on('moveNext', this.moveChildNext)
+  },
   methods: {
     /* catalog action: append new content in container */
     handleAppend(item) {
@@ -33,6 +37,7 @@ export default {
       this.moveChild(child, 1)
     },
     moveChild(child, direction) {
+      if (child === this) { return }
       const children = this.children()
       const index = children.findIndex(c => c.token.uuid === child.token.uuid)
 
@@ -51,6 +56,7 @@ export default {
       this.content = this.toString(template)
       this.bus.$emit('update')
     },
+    /* child compoents, as opposed to editors that are editors created from tokens */
     children(except = null) {
       return this.$children
         .filter(c => c !== except)

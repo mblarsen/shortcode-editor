@@ -5,6 +5,8 @@
         <component v-for="(editor, i) in editors"
           class="editor"
           @remove="removeChild"
+          @movePrev="moveChildPrev"
+          @moveNext="moveChildNext"
           :is="editor.use"
           :token="editor.token"
           :key="editor.use + i"></component>
@@ -76,6 +78,8 @@ export default {
       })
       /* on update save */
       this._provided.bus.$on('update', this.save)
+      this.$on('movePrev', this.moveChildPrev)
+      this.$on('moveNext', this.moveChildNext)
     },
     readSource() {
       const srcId = this.$parent.$options.el.attributes.src.value
@@ -88,16 +92,44 @@ export default {
       }
       this.content = this.srcElement.value || ''
     },
-    childrenToString(except = null) {
+    moveChildPrev(child) {
+      this.moveChild(child, -1)
+    },
+    moveChildNext(child) {
+      this.moveChild(child, 1)
+    },
+    moveChild(child, direction) {
+      if (child === this) { return }
+      const children = this.children()
+      const index = children.findIndex(c => c.token.uuid === child.token.uuid)
+
+      if (direction === -1 && index === 0 || direction === 1 & index + 1 === children.length) {
+        return // noop
+      }
+      const otherChild = children[index + direction]
+
+      children[index + direction] = child
+      children[index] = otherChild
+
+      const template = children
+        .map(c => c.toTemplate())
+        .join('')
+
+      this.save(this.content, template)
+    },
+    children(except = null) {
       return this.$children
         .filter(c => c !== except)
         .filter(c => c.$options.name.endsWith('-editor'))
+    },
+    childrenToString(except = null) {
+      return this.children(except)
         .map(c => c.toTemplate())
         .join('')
     },
-    save(old = null) {
+    save(old = null, preRendered = null) {
       this.undoLog.push(old || this.content)
-      const content = this.childrenToString()
+      const content = preRendered || this.childrenToString()
       this.srcElement.innerText = this.content = content
       this.redoLog = []
     },

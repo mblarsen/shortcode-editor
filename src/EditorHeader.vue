@@ -5,8 +5,8 @@
     <a v-if="canPaste && hasPaste" class="editor__paste btn btn-xs btn-link`" @click.prevent="$parent.pasteTemplate">Paste <span v-if="copied">copied!</span></a>
     <a class="editor__wrap btn btn-xs btn-link`" @click.prevent="$parent.wrapIn">Wrap in</a>
     <a class="editor__change btn btn-xs btn-link`" @click.prevent="$parent.changeType">Change type</a>
-    <a class="editor__move-prev btn btn-xs btn-link`" @click.prevent="$parent.movePrev"><span class="icon"><i class="fa fa-chevron-left"></i></span></a>
-    <a class="editor__move-next btn btn-xs btn-link`" @click.prevent="$parent.moveNext"><span class="icon"><i class="fa fa-chevron-right"></i></span></a>
+    <a v-if="canMove" class="editor__move-prev btn btn-xs btn-link`" @click.prevent="$parent.movePrev"><span class="icon"><i class="fa fa-chevron-left"></i></span></a>
+    <a v-if="canMove" class="editor__move-next btn btn-xs btn-link`" @click.prevent="$parent.moveNext"><span class="icon"><i class="fa fa-chevron-right"></i></span></a>
     <a class="editor__remove btn btn-xs btn-link`" @click.prevent="$parent.remove"><span class="icon"><i class="fa fa-times"></i></span></a>
   </div>
 </template>
@@ -19,6 +19,11 @@ export default {
       copied: false,
       hasPaste: false,
       canPaste: false,
+    }
+  },
+  computed: {
+    canMove() {
+      return this.$parent.$parent && this.$parent.$parent.editors && this.$parent.$parent.editors.length > 1
     }
   },
   created() {
