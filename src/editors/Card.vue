@@ -148,7 +148,7 @@ export default {
             return
           }
           this.images = list.images
-          const image = list && list.images.find(i => i.name === this.name) || null
+          const image = list && list.images.find(i => i.name === this.image) || null
           this.src = image && image.url || null
         })
     },
