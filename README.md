@@ -1,3 +1,5 @@
+**NOTE**: This example was developed for a concrete backend so some of the logic may seem really odd and even break.
+
 # slot-editor
 
 > Visual editor that makes use of shortcodes as seen in WordPress, using [mblarsen/shortcode-tokenizer](https://github.com/mblarsen/shortcode-tokenizer).
