@@ -1,3 +1,5 @@
+# DEPRECATED: This is no longer maintained
+
 **NOTE**: This example was developed for a concrete backend so some of the logic may seem really odd and even break.
 
 # slot-editor
